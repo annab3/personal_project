@@ -4,7 +4,14 @@ const app = express();
 const massive = require("massive");
 const session = require("express-session");
 const { PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
-const { login, register } = require("./controllers");
+const {
+  login,
+  register,
+  registerDog,
+  getUser,
+  logout
+} = require("./controllers");
+const { getSession } = require("./middleware");
 
 massive(CONNECTION_STRING)
   .then(db => {
@@ -21,7 +28,12 @@ app.use(
     secret: SESSION_SECRET
   })
 );
+app.use(getSession);
+
+app.get("/api/user", getUser);
 app.post("/api/login", login);
+app.get("/api/logout", logout);
 app.post("/api/register", register);
+app.post("/api/pets", registerDog);
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

@@ -14,10 +14,17 @@ const login = async (req, res) => {
       console.log("2");
       res.status(403).json("Wrong username or password");
     } else {
-      req.session.user = client[0];
-      res.status(200).json(req.session.user);
+      req.session.user = { username: client[0].username };
+      res.status(200).json(client[0]);
     }
   }
+};
+const getUser = async (req, res) => {
+  let client = await req.app
+    .get("db")
+    .get_user(req.session.user.username)
+    .catch(error => console.log(error));
+  res.status(200).json(client[0]);
 };
 const register = async (req, res) => {
   let {
@@ -51,12 +58,36 @@ const register = async (req, res) => {
         state,
         zip
       ]);
-    req.session.user = client[0];
-    res.status(200).json(req.session.user);
+    req.session.user = { username: client[0].username };
+    res.status(200).json(client[0]);
   }
+};
+const registerDog = async (req, res) => {
+  let dogs = await req.app
+    .get("db")
+    .registerdog(
+      req.body.name,
+      req.body.picture,
+      req.body.breed,
+      req.body.birthday,
+      req.body.weight,
+      req.body.color,
+      req.body.feeding,
+      req.body.owner_id
+    )
+    .catch(error => console.log(error));
+  res.status(200).json(dogs);
+};
+
+const logout = (req, res) => {
+  req.session.destroy();
+  res.sendStatus(200);
 };
 
 module.exports = {
   login,
-  register
+  register,
+  registerDog,
+  getUser,
+  logout
 };

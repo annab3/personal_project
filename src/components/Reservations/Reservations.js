@@ -1,8 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 
-function Reservations(props) {
-  return <div>Reservations</div>;
+class Reservations extends Component {
+  render() {
+    return <div>Reservations</div>;
+  }
 }
 
 function mapStateToProps(state) {

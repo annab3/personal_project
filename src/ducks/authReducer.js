@@ -7,9 +7,10 @@ const initialState = {
   pets: []
 };
 
+const GET_USER = "GET_USER";
 const LOGIN = "LOGIN";
 const REGISTER = "REGISTER";
-const REGISTER_PET = "REGISTER_PET";
+const REGISTER_DOG = "REGISTER_DOG";
 const UPDATE_USERNAME = "UPDATE_USERNAME";
 const UPDATE_PASSWORD = "UPDATE_PASSWORD";
 
@@ -45,17 +46,18 @@ export function register(
   };
 }
 
-export function registerPet(
+export function registerDog(
   name,
   picture,
   breed,
   birthday,
   weight,
   color,
-  feeding
+  feeding,
+  client_id
 ) {
   return {
-    type: REGISTER_PET,
+    type: REGISTER_DOG,
     payload: axios
       .post("/api/pets", {
         name,
@@ -64,7 +66,8 @@ export function registerPet(
         birthday,
         weight,
         color,
-        feeding
+        feeding,
+        client_id
       })
       .then(res => res.data)
       .catch(error => console.log(error))
@@ -92,9 +95,23 @@ export function updatePassword(val) {
     payload: val
   };
 }
+export function getUser() {
+  return {
+    type: GET_USER,
+    payload: axios
+      .get("/api/user")
+      .then(res => res.data)
+      .catch(error => console.log(error))
+  };
+}
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case `${GET_USER}_FULFILLED`:
+      return {
+        ...state,
+        client: action.payload
+      };
     case `${REGISTER}_FULFILLED`:
       return {
         ...state,
@@ -107,7 +124,7 @@ export default function reducer(state = initialState, action) {
         username: "",
         client: action.payload
       };
-    case `${REGISTER_PET}_FULFILLED`:
+    case `${REGISTER_DOG}_FULFILLED`:
       return {
         ...state,
         pets: action.payload

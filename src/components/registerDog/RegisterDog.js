@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { registerPet } from "../../ducks/authReducer";
+import { registerDog } from "../../ducks/authReducer";
 
-class RegisterPet extends Component {
+class RegisterDog extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -70,14 +70,15 @@ class RegisterPet extends Component {
           />
           <button
             onClick={() => {
-              this.props.registerPet(
+              this.props.registerDog(
                 this.state.name,
                 this.state.picture,
                 this.state.breed,
                 this.state.birthday,
                 this.state.weight,
                 this.state.color,
-                this.state.feeding
+                this.state.feeding,
+                this.props.client.client_id
               );
             }}
           >
@@ -91,12 +92,13 @@ class RegisterPet extends Component {
 
 function mapStateToProps(state) {
   return {
+    client: state.authReducer.client,
     pets: state.authReducer.pets
   };
 }
 export default connect(
   mapStateToProps,
   {
-    registerPet
+    registerDog
   }
-)(RegisterPet);
+)(RegisterDog);
