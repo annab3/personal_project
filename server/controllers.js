@@ -55,12 +55,8 @@ const register = async (req, res) => {
     res.status(200).json(req.session.user);
   }
 };
-const checkForUser = (req, res) => {
-  res.status(200).json(req.session.user);
-};
 
 module.exports = {
   login,
-  register,
-  checkForUser
+  register
 };

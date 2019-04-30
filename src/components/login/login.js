@@ -8,16 +8,17 @@ class Login extends Component {
     if (this.props.client.username) {
       return <Redirect to="/portal/reservations" />;
     } else {
-      console.log(this.props);
       return (
         <div>
           <input
+            required
             placeholder="username"
             onChange={e => {
               this.props.updateUsername(e.target.value);
             }}
           />
           <input
+            required
             type="password"
             placeholder="password"
             onChange={e => this.props.updatePassword(e.target.value)}
@@ -41,9 +42,9 @@ class Login extends Component {
 
 function mapStateToProps(state) {
   return {
-    client: state.authReducer.client,
     username: state.authReducer.username,
-    password: state.authReducer.password
+    password: state.authReducer.password,
+    client: state.authReducer.client
   };
 }
 

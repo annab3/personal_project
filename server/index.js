@@ -21,9 +21,6 @@ app.use(
     secret: SESSION_SECRET
   })
 );
-// app.use(check);
-
-// app.get("/api/checkUser", checkForUser);
 app.post("/api/login", login);
 app.post("/api/register", register);
 
