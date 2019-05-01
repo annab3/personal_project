@@ -1,1 +1,1 @@
-SELECT * FROM client WHERE username = $1;
+SELECT * FROM client WHERE client_id = $1;

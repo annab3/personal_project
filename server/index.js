@@ -9,8 +9,10 @@ const {
   register,
   registerDog,
   getUser,
-  logout
+  logout,
+  getPets
 } = require("./controllers");
+const { getPending, getConfirmed, getHistory } = require("./resControllers");
 const { getSession } = require("./middleware");
 
 massive(CONNECTION_STRING)
@@ -35,5 +37,9 @@ app.post("/api/login", login);
 app.get("/api/logout", logout);
 app.post("/api/register", register);
 app.post("/api/pets", registerDog);
+app.get("/api/pets", getPets);
+app.get("/api/pending", getPending);
+app.get("/api/confirmed", getConfirmed);
+app.get("/api/history", getHistory);
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { registerDog } from "../../ducks/authReducer";
 
 class RegisterDog extends Component {
@@ -14,6 +15,27 @@ class RegisterDog extends Component {
       color: "",
       feeding: ""
     };
+  }
+  clickhandler() {
+    this.props.registerDog(
+      this.state.name,
+      this.state.picture,
+      this.state.breed,
+      this.state.birthday,
+      this.state.weight,
+      this.state.color,
+      this.state.feeding,
+      this.props.client.client_id
+    );
+    this.setState({
+      name: "",
+      picture: "",
+      breed: "",
+      birthday: "",
+      weight: 0,
+      color: "",
+      feeding: ""
+    });
   }
   render() {
     return (
@@ -34,7 +56,6 @@ class RegisterDog extends Component {
           />
           <label>Breed</label>
           <input
-            required
             onChange={e => {
               this.setState({ breed: e.target.value });
             }}
@@ -47,43 +68,25 @@ class RegisterDog extends Component {
           />
           <label>Weight</label>
           <input
-            required
-            type="tel"
             onChange={e => {
               this.setState({ weight: e.target.value });
             }}
           />
           <label>Fur Color</label>
           <input
-            required
-            type="tel"
             onChange={e => {
               this.setState({ color: e.target.value });
             }}
           />
           <label>Feeding Instructions</label>
           <input
-            required
             onChange={e => {
               this.setState({ feeding: e.target.value });
             }}
           />
-          <button
-            onClick={() => {
-              this.props.registerDog(
-                this.state.name,
-                this.state.picture,
-                this.state.breed,
-                this.state.birthday,
-                this.state.weight,
-                this.state.color,
-                this.state.feeding,
-                this.props.client.client_id
-              );
-            }}
-          >
-            Submit
-          </button>
+          <Link to="/portal/profile">
+            <button onClick={() => this.clickhandler()}>Submit</button>
+          </Link>
         </form>
       </div>
     );
@@ -92,8 +95,7 @@ class RegisterDog extends Component {
 
 function mapStateToProps(state) {
   return {
-    client: state.authReducer.client,
-    pets: state.authReducer.pets
+    client: state.authReducer.client
   };
 }
 export default connect(

@@ -8,11 +8,22 @@ const initialState = {
 };
 
 const GET_USER = "GET_USER";
+const GET_PETS = "GET_PETS";
 const LOGIN = "LOGIN";
 const REGISTER = "REGISTER";
 const REGISTER_DOG = "REGISTER_DOG";
 const UPDATE_USERNAME = "UPDATE_USERNAME";
 const UPDATE_PASSWORD = "UPDATE_PASSWORD";
+
+export function getPets() {
+  return {
+    type: GET_PETS,
+    payload: axios
+      .get(`/api/pets`)
+      .then(res => res.data)
+      .catch(error => console.log(error))
+  };
+}
 
 export function register(
   username,
@@ -107,6 +118,11 @@ export function getUser() {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case `${GET_PETS}_FULFILLED`:
+      return {
+        ...state,
+        pets: action.payload
+      };
     case `${GET_USER}_FULFILLED`:
       return {
         ...state,

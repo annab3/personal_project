@@ -1,0 +1,1 @@
+SELECT * FROM dog WHERE client_id = $1;

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 function ClientProfile(props) {
@@ -17,8 +18,18 @@ function ClientProfile(props) {
       </div>
       <div>
         pets
+        {console.log(props.pets)}
+        {props.pets.map((pet, index) => {
+          return (
+            <div key={index}>
+              <h5>{pet.name}</h5>
+            </div>
+          );
+        })}
         {/* map function over array of pets */}
-        <button>Add Pet</button>
+        <Link to="/portal/add_dog">
+          <button>Add Pet</button>
+        </Link>
       </div>
     </div>
   );
@@ -26,7 +37,8 @@ function ClientProfile(props) {
 
 function mapStateToProps(state) {
   return {
-    client: state.authReducer.client
+    client: state.authReducer.client,
+    pets: state.authReducer.pets
   };
 }
 

@@ -2,12 +2,17 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
 import portalRoutes from "../../protalRoutes";
-import { getUser } from "../../ducks/authReducer";
+import { getUser, getPets } from "../../ducks/authReducer";
+import { getConfirmed, getPending, getHistory } from "../../ducks/resReducer";
 import axios from "axios";
 
 class Portal extends Component {
   componentDidMount() {
     this.props.getUser();
+    this.props.getPets();
+    this.props.getConfirmed();
+    this.props.getPending();
+    this.props.getHistory();
   }
   handleClick() {
     axios.get("/api/logout").catch(error => console.log(error));
@@ -16,7 +21,6 @@ class Portal extends Component {
     if (!this.props.client.username) {
       return <Redirect to="/login" />;
     } else {
-      console.log(this.props);
       return (
         <div>
           <h2>Portal</h2>
@@ -49,5 +53,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { getUser }
+  { getUser, getPets, getConfirmed, getPending, getHistory }
 )(Portal);

@@ -12,11 +12,11 @@ export default function Navbar() {
         <Link to="/services">
           <li>Services/Rates</li>
         </Link>
-        <Link to="/portal">
-          <li>Reservations</li>
-        </Link>
         <Link to="/contact">
           <li>Contact Us</li>
+        </Link>
+        <Link to="/portal">
+          <li>Client Portal</li>
         </Link>
       </ul>
     </nav>
