@@ -18,7 +18,6 @@ function ClientProfile(props) {
       </div>
       <div>
         pets
-        {console.log(props.pets)}
         {props.pets.map((pet, index) => {
           return (
             <div key={index}>

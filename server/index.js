@@ -12,7 +12,14 @@ const {
   logout,
   getPets
 } = require("./controllers");
-const { getPending, getConfirmed, getHistory } = require("./resControllers");
+const {
+  getPending,
+  getConfirmed,
+  getHistory,
+  deletePending,
+  deleteConfirmed,
+  addPending
+} = require("./resControllers");
 const { getSession } = require("./middleware");
 
 massive(CONNECTION_STRING)
@@ -41,5 +48,8 @@ app.get("/api/pets", getPets);
 app.get("/api/pending", getPending);
 app.get("/api/confirmed", getConfirmed);
 app.get("/api/history", getHistory);
+app.delete("/api/pending/:id", deletePending);
+app.delete("/api/confirmed/:id", deleteConfirmed);
+app.post("/api/pending", addPending);
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

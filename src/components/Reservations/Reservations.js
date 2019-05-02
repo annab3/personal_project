@@ -1,12 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import {
+  deletePending,
+  deleteConfirmed,
+  getPending,
+  getConfirmed
+} from "../../ducks/resReducer";
 
 class Reservations extends Component {
+  componentDidMount() {
+    this.props.getConfirmed();
+    this.props.getPending();
+  }
   render() {
     return (
       <div>
         Reservations
-        <button>Make New Reservation</button>
+        <Link to="/portal/make_reservation">
+          <button>Make New Reservation</button>
+        </Link>
         <h2>Pending Reservations</h2>
         {/* table of pending reservations */}
         {this.props.pending[0] ? (
@@ -35,6 +48,15 @@ class Reservations extends Component {
                         .reverse()
                         .join("-")}
                     </td>
+                    <td>
+                      <button
+                        onClick={() => {
+                          this.props.deletePending(row.pending_id);
+                        }}
+                      >
+                        X
+                      </button>
+                    </td>
                   </tr>
                 );
               })}
@@ -53,6 +75,7 @@ class Reservations extends Component {
                 <th>Name</th>
                 <th>Start Date</th>
                 <th>End Date</th>
+                <th>Cancel</th>
               </tr>
               {this.props.confirmed.map((row, index) => {
                 return (
@@ -71,6 +94,15 @@ class Reservations extends Component {
                         .split("-")
                         .reverse()
                         .join("-")}
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => {
+                          this.props.deleteConfirmed(row.id);
+                        }}
+                      >
+                        X
+                      </button>
                     </td>
                   </tr>
                 );
@@ -93,4 +125,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Reservations);
+export default connect(
+  mapStateToProps,
+  { deletePending, deleteConfirmed, getConfirmed, getPending }
+)(Reservations);

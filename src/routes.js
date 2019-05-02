@@ -6,6 +6,7 @@ import Register from "./components/register/register";
 import Services from "./components/services/services";
 import Contact from "./components/contact/contact";
 import Portal from "./components/portal/portal";
+import Admin from "./components/admin/Admin";
 
 export default (
   <Switch>
@@ -14,6 +15,7 @@ export default (
     <Route path="/services" component={Services} />
     <Route path="/Contact" component={Contact} />
     <Route path="/portal" component={Portal} />
+    <Route path="/admin" component={Admin} />
     <Route exact path="/" component={Home} />
   </Switch>
 );

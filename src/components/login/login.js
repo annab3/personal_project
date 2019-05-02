@@ -5,8 +5,13 @@ import { login, updatePassword, updateUsername } from "../../ducks/authReducer";
 
 class Login extends Component {
   render() {
-    if (this.props.client.username) {
-      return <Redirect to="/portal/reservations" />;
+    if (this.props.client.username && this.props.client.is_admin === false) {
+      return <Redirect to="/portal" />;
+    } else if (
+      this.props.client.username &&
+      this.props.client.is_admin === true
+    ) {
+      return <Redirect to="/admin" />;
     } else {
       return (
         <div>

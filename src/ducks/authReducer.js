@@ -10,6 +10,7 @@ const initialState = {
 const GET_USER = "GET_USER";
 const GET_PETS = "GET_PETS";
 const LOGIN = "LOGIN";
+const LOGOUT = "LOGOUT";
 const REGISTER = "REGISTER";
 const REGISTER_DOG = "REGISTER_DOG";
 const UPDATE_USERNAME = "UPDATE_USERNAME";
@@ -94,6 +95,12 @@ export function login(username, password) {
       .catch(error => console.log(error))
   };
 }
+export function logout() {
+  axios.get("/api/logout").catch(error => console.log(error));
+  return {
+    type: LOGOUT
+  };
+}
 export function updateUsername(val) {
   return {
     type: UPDATE_USERNAME,
@@ -154,6 +161,14 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         password: action.payload
+      };
+    case "LOGOUT":
+      return {
+        ...state,
+        username: "",
+        password: "",
+        client: {},
+        pets: []
       };
     default:
       return state;
