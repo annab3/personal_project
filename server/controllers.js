@@ -99,6 +99,50 @@ const getPets = async (req, res) => {
     res.sendStatus(200);
   }
 };
+const editUser = async (req, res) => {
+  const {
+    first_name,
+    last_name,
+    primary_phone,
+    secondary_phone,
+    address,
+    city,
+    state,
+    zip
+  } = req.body;
+  let client = await req.app
+    .get("db")
+    .edit_user([
+      first_name,
+      last_name,
+      primary_phone,
+      secondary_phone,
+      address,
+      city,
+      state,
+      zip,
+      req.session.user.client_id
+    ])
+    .catch(error => console.log(error));
+  res.status(200).json(client[0]);
+};
+const editPets = async (req, res) => {
+  let pets = await req.app
+    .get("db")
+    .edit_pets([
+      req.body.dog_id,
+      req.body.name,
+      req.body.picture,
+      req.body.breed,
+      req.body.birthday,
+      req.body.weight,
+      req.body.color,
+      req.body.feeding,
+      +req.session.user.client_id
+    ])
+    .catch(error => console.log(error));
+  res.status(200).json(pets);
+};
 
 module.exports = {
   login,
@@ -106,5 +150,7 @@ module.exports = {
   registerDog,
   getUser,
   logout,
-  getPets
+  getPets,
+  editUser,
+  editPets
 };

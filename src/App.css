@@ -15,3 +15,6 @@ li:hover {
   cursor: pointer;
   list-style: none;
 }
+img {
+  max-height: 200px;
+}

@@ -15,6 +15,8 @@ const REGISTER = "REGISTER";
 const REGISTER_DOG = "REGISTER_DOG";
 const UPDATE_USERNAME = "UPDATE_USERNAME";
 const UPDATE_PASSWORD = "UPDATE_PASSWORD";
+const EDIT_CLIENT = "EDIT_CLIENT";
+const EDIT_PETS = "EDIT_PETS";
 
 export function getPets() {
   return {
@@ -122,6 +124,42 @@ export function getUser() {
       .catch(error => console.log(error))
   };
 }
+export function editClient(
+  first_name,
+  last_name,
+  primary_phone,
+  secondary_phone,
+  address,
+  city,
+  state,
+  zip
+) {
+  return {
+    type: EDIT_CLIENT,
+    payload: axios
+      .put("/api/user", {
+        first_name,
+        last_name,
+        primary_phone,
+        secondary_phone,
+        address,
+        city,
+        state,
+        zip
+      })
+      .then(res => res.data)
+      .catch(error => console.log(error))
+  };
+}
+export function editPets(pet) {
+  return {
+    type: EDIT_PETS,
+    payload: axios
+      .put("/api/pets", pet)
+      .then(res => res.data)
+      .catch(error => console.log(error))
+  };
+}
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -169,6 +207,16 @@ export default function reducer(state = initialState, action) {
         password: "",
         client: {},
         pets: []
+      };
+    case `${EDIT_CLIENT}_FULFILLED`:
+      return {
+        ...state,
+        client: action.payload
+      };
+    case `${EDIT_PETS}_FULFILLED`:
+      return {
+        ...state,
+        pets: action.payload
       };
     default:
       return state;

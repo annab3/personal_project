@@ -10,7 +10,9 @@ const {
   registerDog,
   getUser,
   logout,
-  getPets
+  getPets,
+  editUser,
+  editPets
 } = require("./controllers");
 const {
   getPending,
@@ -51,5 +53,7 @@ app.get("/api/history", getHistory);
 app.delete("/api/pending/:id", deletePending);
 app.delete("/api/confirmed/:id", deleteConfirmed);
 app.post("/api/pending", addPending);
+app.put("/api/user", editUser);
+app.put("/api/pets", editPets);
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

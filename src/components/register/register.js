@@ -10,12 +10,12 @@ class Register extends Component {
       password: "",
       first_name: "",
       last_name: "",
-      primary_phone: 0,
-      secondary_phone: 0,
+      primary_phone: "",
+      secondary_phone: "",
       address: "",
       city: "",
       state: "",
-      zip: 0
+      zip: ""
     };
   }
   render() {

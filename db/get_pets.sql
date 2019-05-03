@@ -1,1 +1,1 @@
-SELECT * FROM dog WHERE client_id = $1;
+SELECT * FROM dog WHERE client_id = $1 ORDER BY dog_id ASC;
