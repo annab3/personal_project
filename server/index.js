@@ -22,6 +22,7 @@ const {
   deleteConfirmed,
   addPending
 } = require("./resControllers");
+const { getAllPending } = require("./adminControllers");
 const { getSession } = require("./middleware");
 
 massive(CONNECTION_STRING)
@@ -55,5 +56,6 @@ app.delete("/api/confirmed/:id", deleteConfirmed);
 app.post("/api/pending", addPending);
 app.put("/api/user", editUser);
 app.put("/api/pets", editPets);
+app.get("/api/admin/pending", getAllPending);
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
