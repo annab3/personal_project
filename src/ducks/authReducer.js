@@ -124,29 +124,11 @@ export function getUser() {
       .catch(error => console.log(error))
   };
 }
-export function editClient(
-  first_name,
-  last_name,
-  primary_phone,
-  secondary_phone,
-  address,
-  city,
-  state,
-  zip
-) {
+export function editClient(client) {
   return {
     type: EDIT_CLIENT,
     payload: axios
-      .put("/api/user", {
-        first_name,
-        last_name,
-        primary_phone,
-        secondary_phone,
-        address,
-        city,
-        state,
-        zip
-      })
+      .put("/api/user", client)
       .then(res => res.data)
       .catch(error => console.log(error))
   };

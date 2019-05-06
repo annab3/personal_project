@@ -103,20 +103,21 @@ const editUser = async (req, res) => {
   const {
     first_name,
     last_name,
-    primary_phone,
-    secondary_phone,
+    primary_number,
+    secondary_number,
     address,
     city,
     state,
     zip
   } = req.body;
+  console.log(req.body);
   let client = await req.app
     .get("db")
     .edit_user([
       first_name,
       last_name,
-      primary_phone,
-      secondary_phone,
+      +primary_number,
+      +secondary_number,
       address,
       city,
       state,

@@ -7,63 +7,17 @@ class ClientProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      edit_client: false,
-      first_name: this.props.client.first_name,
-      last_name: this.props.client.last_name,
-      primary_phone: this.props.client.primary_number,
-      secondary_phone: this.props.client.secondary_number,
-      address: this.props.client.address,
-      city: this.props.client.city,
-      state: this.props.client.state,
-      zip: this.props.client.zip,
+      edit_client: {},
+      edit: false,
       edit_pet: {}
     };
   }
   clickHandlerCancelUserEdit() {
-    this.setState({
-      edit_client: false,
-      first_name: this.props.client.first_name,
-      last_name: this.props.client.last_name,
-      primary_phone: this.props.client.primary_number,
-      secondary_phone: this.props.client.secondary_number,
-      address: this.props.client.address,
-      city: this.props.client.city,
-      state: this.props.client.state,
-      zip: this.props.client.zip
-    });
+    this.setState({ edit_client: {}, edit: false });
   }
   clickHandlerSubmitUserEdit() {
-    const {
-      first_name,
-      last_name,
-      primary_phone,
-      secondary_phone,
-      address,
-      city,
-      state,
-      zip
-    } = this.state;
-    this.props.editClient(
-      first_name,
-      last_name,
-      primary_phone,
-      secondary_phone,
-      address,
-      city,
-      state,
-      zip
-    );
-    this.setState({
-      edit_client: false,
-      first_name: this.props.client.first_name,
-      last_name: this.props.client.last_name,
-      primary_phone: this.props.client.primary_number,
-      secondary_phone: this.props.client.secondary_number,
-      address: this.props.client.address,
-      city: this.props.client.city,
-      state: this.props.client.state,
-      zip: this.props.client.zip
-    });
+    this.props.editClient(this.state.edit_client);
+    this.setState({ edit_client: {}, edit: false });
   }
   clickHandlerCancelPetEdit() {
     this.setState({ edit_pet: {} });
@@ -76,7 +30,7 @@ class ClientProfile extends Component {
     return (
       <div>
         <div>
-          {!this.state.edit_client ? (
+          {!this.state.edit ? (
             <div>
               <h5>
                 Name: {this.props.client.first_name}{" "}
@@ -88,7 +42,11 @@ class ClientProfile extends Component {
               <h5>City: {this.props.client.city}</h5>
               <h5>State: {this.props.client.state}</h5>
               <h5>Zipcode: {this.props.client.zip}</h5>
-              <button onClick={() => this.setState({ edit_client: true })}>
+              <button
+                onClick={() =>
+                  this.setState({ edit: true, edit_client: this.props.client })
+                }
+              >
                 Edit
               </button>
             </div>
@@ -98,11 +56,25 @@ class ClientProfile extends Component {
                 Name:
                 <input
                   placeholder={this.props.client.first_name}
-                  onChange={e => this.setState({ first_name: e.target.value })}
+                  onChange={e =>
+                    this.setState({
+                      edit_client: {
+                        ...this.state.edit_client,
+                        first_name: e.target.value
+                      }
+                    })
+                  }
                 />
                 <input
                   placeholder={this.props.client.last_name}
-                  onChange={e => this.setState({ last_name: e.target.value })}
+                  onChange={e =>
+                    this.setState({
+                      edit_client: {
+                        ...this.state.edit_client,
+                        last_name: e.target.value
+                      }
+                    })
+                  }
                 />
               </h5>
               <h5>
@@ -110,7 +82,12 @@ class ClientProfile extends Component {
                 <input
                   placeholder={this.props.client.primary_number}
                   onChange={e =>
-                    this.setState({ primary_phone: e.target.value })
+                    this.setState({
+                      edit_client: {
+                        ...this.state.edit_client,
+                        primary_number: e.target.value
+                      }
+                    })
                   }
                 />
               </h5>
@@ -119,7 +96,12 @@ class ClientProfile extends Component {
                 <input
                   placeholder={this.props.client.secondary_number}
                   onChange={e =>
-                    this.setState({ secondary_phone: e.target.value })
+                    this.setState({
+                      edit_client: {
+                        ...this.state.edit_client,
+                        secondary_number: e.target.value
+                      }
+                    })
                   }
                 />
               </h5>
@@ -127,28 +109,56 @@ class ClientProfile extends Component {
                 Adress:{" "}
                 <input
                   placeholder={this.props.client.address}
-                  onChange={e => this.setState({ address: e.target.value })}
+                  onChange={e =>
+                    this.setState({
+                      edit_client: {
+                        ...this.state.edit_client,
+                        address: e.target.value
+                      }
+                    })
+                  }
                 />
               </h5>
               <h5>
                 City:{" "}
                 <input
                   placeholder={this.props.client.city}
-                  onChange={e => this.setState({ city: e.target.value })}
+                  onChange={e =>
+                    this.setState({
+                      edit_client: {
+                        ...this.state.edit_client,
+                        city: e.target.value
+                      }
+                    })
+                  }
                 />
               </h5>
               <h5>
                 State:{" "}
                 <input
                   placeholder={this.props.client.state}
-                  onChange={e => this.setState({ state: e.target.value })}
+                  onChange={e =>
+                    this.setState({
+                      edit_client: {
+                        ...this.state.edit_client,
+                        state: e.target.value
+                      }
+                    })
+                  }
                 />
               </h5>
               <h5>
                 Zipcode:{" "}
                 <input
                   placeholder={this.props.client.zip}
-                  onChange={e => this.setState({ zip: e.target.value })}
+                  onChange={e =>
+                    this.setState({
+                      edit_client: {
+                        ...this.state.edit_client,
+                        zip: e.target.value
+                      }
+                    })
+                  }
                 />
               </h5>
               <div>

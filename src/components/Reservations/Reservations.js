@@ -29,6 +29,7 @@ class Reservations extends Component {
                 <th>Name</th>
                 <th>Start Date</th>
                 <th>End Date</th>
+                <th>Cancel</th>
               </tr>
               {this.props.pending.map((row, index) => {
                 return (
