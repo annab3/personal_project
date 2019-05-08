@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { editClient, editPets } from "../../ducks/authReducer";
+import FileUpload from "../fileUpload/FileUpload";
 
 class ClientProfile extends Component {
   constructor(props) {
@@ -28,8 +29,8 @@ class ClientProfile extends Component {
   }
   render() {
     return (
-      <div>
-        <div>
+      <div className="profile_container">
+        <div className="client_profile_container">
           {!this.state.edit ? (
             <div>
               <h5>
@@ -172,8 +173,7 @@ class ClientProfile extends Component {
             </div>
           )}
         </div>
-        <div>
-          pets
+        <div className="pet_profile_container">
           {this.props.pets.map((pet, index) => {
             if (
               this.state.edit_pet.dog_id &&
@@ -183,7 +183,7 @@ class ClientProfile extends Component {
                 <div key={index}>
                   <h5>
                     Picture:{" "}
-                    <input
+                    {/* <input
                       placeholder={pet.picture}
                       onChange={e =>
                         this.setState({
@@ -193,7 +193,8 @@ class ClientProfile extends Component {
                           }
                         })
                       }
-                    />
+                    /> */}
+                    <FileUpload />
                   </h5>
                   <h5>
                     Name:{" "}

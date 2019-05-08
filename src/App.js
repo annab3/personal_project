@@ -2,7 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import { HashRouter } from "react-router-dom";
 import store from "./store";
-import "./App.css";
+import "./App.scss";
 import routes from "./routes";
 import NavBar from "./components/navBar/navBar";
 
@@ -11,7 +11,7 @@ function App() {
     <Provider store={store}>
       <HashRouter>
         <NavBar />
-        <div>{routes}</div>
+        <div className="main">{routes}</div>
       </HashRouter>
     </Provider>
   );

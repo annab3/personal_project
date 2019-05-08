@@ -15,7 +15,7 @@ class Reservations extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="reservation_container">
         Reservations
         <Link to="/portal/make_reservation">
           <button>Make New Reservation</button>

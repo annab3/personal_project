@@ -8,7 +8,7 @@ class History extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="history_container">
         Past Reservations
         {this.props.history[0] ? (
           <table>

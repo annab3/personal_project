@@ -16,9 +16,8 @@ class Portal extends Component {
       return <Redirect to="/admin" />;
     } else {
       return (
-        <div>
-          <h2>Portal</h2>
-          <ul>
+        <div className="portal_container">
+          <ul className="portal_nav">
             <Link to="/portal/profile">
               <li>Profile</li>
             </Link>
@@ -28,7 +27,7 @@ class Portal extends Component {
             <Link to="/portal/history">
               <li>History</li>
             </Link>
-            <Link to="/home">
+            <Link to="/">
               <button onClick={() => this.props.logout()}>Logout</button>
             </Link>
           </ul>

@@ -1,4 +1,10 @@
 const bcrypt = require("bcryptjs");
+const fs = require("fs");
+const fileType = require("file-type");
+const multiparty = require("multiparty");
+const AWS = require("aws-sdk");
+const bluebird = require("bluebird");
+const { BUCKET_NAME, AWS_ACCESS_KEY, AWS_SECRECT_ACCESS_KEY } = process.env;
 
 const login = async (req, res) => {
   let client = await req.app
@@ -144,6 +150,41 @@ const editPets = async (req, res) => {
     .catch(error => console.log(error));
   res.status(200).json(pets);
 };
+AWS.config.update({
+  accessKeyId: AWS_ACCESS_KEY,
+  secretAccessKey: AWS_SECRECT_ACCESS_KEY
+});
+
+AWS.config.setPromisesDependency(bluebird);
+const s3 = new AWS.S3();
+const uploadFile = (buffer, name, type) => {
+  const params = {
+    ACL: "public-read",
+    Body: buffer,
+    Bucket: BUCKET_NAME,
+    ContentType: type.mime,
+    Key: `${name}.${type.ext}`
+  };
+  return s3.upload(params).promise();
+};
+const uploadFiles = (request, response) => {
+  const form = new multiparty.Form();
+  form.parse(request, async (error, fields, files) => {
+    if (error) throw new Error(error);
+    try {
+      const path = files.file[0].path;
+      const buffer = fs.readFileSync(path);
+      const type = fileType(buffer);
+      const timestamp = Date.now().toString();
+      const fileName = `bucketFolder/${timestamp}-lg`;
+      const data = await uploadFile(buffer, fileName, type);
+      console.log(data);
+      return response.status(200).send(data);
+    } catch (error) {
+      return response.status(400).send(error);
+    }
+  });
+};
 
 module.exports = {
   login,
@@ -153,5 +194,6 @@ module.exports = {
   logout,
   getPets,
   editUser,
-  editPets
+  editPets,
+  uploadFiles
 };
