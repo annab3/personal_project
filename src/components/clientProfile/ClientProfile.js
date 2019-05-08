@@ -24,7 +24,15 @@ class ClientProfile extends Component {
     this.setState({ edit_pet: {} });
   }
   clickHandlerSubmitPetEdit() {
-    this.props.editPets(this.state.edit_pet);
+    if (this.props.pet_picture !== "") {
+      let edit_pet = {
+        ...this.state.edit_pet,
+        picture: this.props.pet_picture
+      };
+      this.props.editPets(edit_pet);
+    } else {
+      this.props.editPets(this.state.edit_pet);
+    }
     this.setState({ edit_pet: {} });
   }
   render() {
@@ -182,19 +190,7 @@ class ClientProfile extends Component {
               return (
                 <div key={index}>
                   <h5>
-                    Picture:{" "}
-                    {/* <input
-                      placeholder={pet.picture}
-                      onChange={e =>
-                        this.setState({
-                          edit_pet: {
-                            ...this.state.edit_pet,
-                            picture: e.target.value
-                          }
-                        })
-                      }
-                    /> */}
-                    <FileUpload />
+                    Picture: <FileUpload />
                   </h5>
                   <h5>
                     Name:{" "}
@@ -327,7 +323,8 @@ class ClientProfile extends Component {
 function mapStateToProps(state) {
   return {
     client: state.authReducer.client,
-    pets: state.authReducer.pets
+    pets: state.authReducer.pets,
+    pet_picture: state.authReducer.pet_picture
   };
 }
 

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { updatePetPicture } from "../../ducks/authReducer";
+import { connect } from "react-redux";
 
 class FileUpload extends Component {
   constructor() {
@@ -20,7 +22,7 @@ class FileUpload extends Component {
         }
       })
       .then(response => {
-        console.log(response.data);
+        this.props.updatePetPicture(response.data.Location);
       })
       .catch(error => {
         console.log(error);
@@ -45,4 +47,10 @@ class FileUpload extends Component {
   }
 }
 
-export default FileUpload;
+function mapStateToProps(state) {
+  return {};
+}
+export default connect(
+  mapStateToProps,
+  { updatePetPicture }
+)(FileUpload);

@@ -4,7 +4,8 @@ const initialState = {
   username: "",
   password: "",
   client: {},
-  pets: []
+  pets: [],
+  pet_picture: ""
 };
 
 const GET_USER = "GET_USER";
@@ -17,6 +18,7 @@ const UPDATE_USERNAME = "UPDATE_USERNAME";
 const UPDATE_PASSWORD = "UPDATE_PASSWORD";
 const EDIT_CLIENT = "EDIT_CLIENT";
 const EDIT_PETS = "EDIT_PETS";
+const UPDATE_PET_PICTURE = "UPDATE_PET_PICTURE";
 
 export function getPets() {
   return {
@@ -142,6 +144,12 @@ export function editPets(pet) {
       .catch(error => console.log(error))
   };
 }
+export function updatePetPicture(url) {
+  return {
+    type: UPDATE_PET_PICTURE,
+    payload: url
+  };
+}
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -170,7 +178,8 @@ export default function reducer(state = initialState, action) {
     case `${REGISTER_DOG}_FULFILLED`:
       return {
         ...state,
-        pets: action.payload
+        pets: action.payload,
+        pet_picture: ""
       };
     case "UPDATE_USERNAME":
       return {
@@ -198,7 +207,13 @@ export default function reducer(state = initialState, action) {
     case `${EDIT_PETS}_FULFILLED`:
       return {
         ...state,
-        pets: action.payload
+        pets: action.payload,
+        pet_picture: ""
+      };
+    case "UPDATE_PET_PICTURE":
+      return {
+        ...state,
+        pet_picture: action.payload
       };
     default:
       return state;
