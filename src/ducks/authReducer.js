@@ -23,10 +23,7 @@ const UPDATE_PET_PICTURE = "UPDATE_PET_PICTURE";
 export function getPets() {
   return {
     type: GET_PETS,
-    payload: axios
-      .get(`/api/pets`)
-      .then(res => res.data)
-      .catch(error => console.log(error))
+    payload: axios.get(`/api/pets`)
   };
 }
 
@@ -44,21 +41,18 @@ export function register(
 ) {
   return {
     type: REGISTER,
-    payload: axios
-      .post("/api/register", {
-        username,
-        password,
-        first_name,
-        last_name,
-        primary_phone,
-        secondary_phone,
-        address,
-        city,
-        state,
-        zip
-      })
-      .then(res => res.data)
-      .catch(error => console.log(error))
+    payload: axios.post("/api/register", {
+      username,
+      password,
+      first_name,
+      last_name,
+      primary_phone,
+      secondary_phone,
+      address,
+      city,
+      state,
+      zip
+    })
   };
 }
 
@@ -74,29 +68,23 @@ export function registerDog(
 ) {
   return {
     type: REGISTER_DOG,
-    payload: axios
-      .post("/api/pets", {
-        name,
-        picture,
-        breed,
-        birthday,
-        weight,
-        color,
-        feeding,
-        client_id
-      })
-      .then(res => res.data)
-      .catch(error => console.log(error))
+    payload: axios.post("/api/pets", {
+      name,
+      picture,
+      breed,
+      birthday,
+      weight,
+      color,
+      feeding,
+      client_id
+    })
   };
 }
 
 export function login(username, password) {
   return {
     type: LOGIN,
-    payload: axios
-      .post("/api/login", { username, password })
-      .then(res => res.data)
-      .catch(error => console.log(error))
+    payload: axios.post("/api/login", { username, password })
   };
 }
 export function logout() {
@@ -120,28 +108,19 @@ export function updatePassword(val) {
 export function getUser() {
   return {
     type: GET_USER,
-    payload: axios
-      .get("/api/user")
-      .then(res => res.data)
-      .catch(error => console.log(error))
+    payload: axios.get("/api/user")
   };
 }
 export function editClient(client) {
   return {
     type: EDIT_CLIENT,
-    payload: axios
-      .put("/api/user", client)
-      .then(res => res.data)
-      .catch(error => console.log(error))
+    payload: axios.put("/api/user", client)
   };
 }
 export function editPets(pet) {
   return {
     type: EDIT_PETS,
-    payload: axios
-      .put("/api/pets", pet)
-      .then(res => res.data)
-      .catch(error => console.log(error))
+    payload: axios.put("/api/pets", pet)
   };
 }
 export function updatePetPicture(url) {
@@ -156,29 +135,32 @@ export default function reducer(state = initialState, action) {
     case `${GET_PETS}_FULFILLED`:
       return {
         ...state,
-        pets: action.payload
+        pets: action.payload.data
       };
     case `${GET_USER}_FULFILLED`:
       return {
         ...state,
-        client: action.payload
+        client: action.payload.data
       };
     case `${REGISTER}_FULFILLED`:
       return {
         ...state,
-        client: action.payload
+        client: action.payload.data
       };
     case `${LOGIN}_FULFILLED`:
       return {
         ...state,
         password: "",
         username: "",
-        client: action.payload
+        client: action.payload.data
       };
+    case `${LOGIN}_REJECTED`:
+      alert("Invalid Username Or Password");
+      return state;
     case `${REGISTER_DOG}_FULFILLED`:
       return {
         ...state,
-        pets: action.payload,
+        pets: action.payload.data,
         pet_picture: ""
       };
     case "UPDATE_USERNAME":
@@ -202,12 +184,12 @@ export default function reducer(state = initialState, action) {
     case `${EDIT_CLIENT}_FULFILLED`:
       return {
         ...state,
-        client: action.payload
+        client: action.payload.data
       };
     case `${EDIT_PETS}_FULFILLED`:
       return {
         ...state,
-        pets: action.payload,
+        pets: action.payload.data,
         pet_picture: ""
       };
     case "UPDATE_PET_PICTURE":

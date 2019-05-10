@@ -235,9 +235,10 @@ class ClientProfile extends Component {
                     />
                   </h5>
                   <h5>
-                    Weight:{" "}
+                    Weight (lbs):{" "}
                     <input
                       placeholder={pet.weight}
+                      type="number"
                       onChange={e =>
                         this.setState({
                           edit_pet: {
@@ -249,7 +250,7 @@ class ClientProfile extends Component {
                     />
                   </h5>
                   <h5>
-                    color:{" "}
+                    Color:{" "}
                     <input
                       placeholder={pet.color}
                       onChange={e =>
@@ -263,7 +264,7 @@ class ClientProfile extends Component {
                     />
                   </h5>
                   <h5>
-                    feeding:{" "}
+                    Feeding:{" "}
                     <input
                       placeholder={pet.feeding}
                       onChange={e =>
@@ -290,9 +291,14 @@ class ClientProfile extends Component {
               return (
                 <div key={index}>
                   {pet.picture ? (
-                    <img src={pet.picture} alt={pet.name} />
+                    <img
+                      className="profile_img"
+                      src={pet.picture}
+                      alt={pet.name}
+                    />
                   ) : (
                     <img
+                      className="profile_img"
                       src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png"
                       alt="nothing provided"
                     />
@@ -300,9 +306,9 @@ class ClientProfile extends Component {
                   <h5>Name: {pet.name}</h5>
                   <h5>Breed: {pet.breed}</h5>
                   <h5>Birthday: {pet.birthday}</h5>
-                  <h5>Weight: {pet.weight}</h5>
-                  <h5>color: {pet.color}</h5>
-                  <h5>feeding: {pet.feeding}</h5>
+                  <h5>Weight (lbs): {pet.weight}</h5>
+                  <h5>Color: {pet.color}</h5>
+                  <h5>Feeding: {pet.feeding}</h5>
                   <button onClick={() => this.setState({ edit_pet: pet })}>
                     Edit
                   </button>

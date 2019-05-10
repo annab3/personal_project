@@ -16,55 +16,37 @@ const ADD_PENDING = "ADD_PENDING";
 export function getPending() {
   return {
     type: GET_PENDING,
-    payload: axios
-      .get("/api/pending")
-      .then(res => res.data)
-      .catch(error => console.log(error))
+    payload: axios.get("/api/pending")
   };
 }
 export function getConfirmed() {
   return {
     type: GET_CONFIRMED,
-    payload: axios
-      .get("/api/confirmed")
-      .then(res => res.data)
-      .catch(error => console.log(error))
+    payload: axios.get("/api/confirmed")
   };
 }
 export function getHistory() {
   return {
     type: GET_HISTORY,
-    payload: axios
-      .get("/api/history")
-      .then(res => res.data)
-      .catch(error => console.log(error))
+    payload: axios.get("/api/history")
   };
 }
 export function deletePending(id) {
   return {
     type: DELETE_PENDING,
-    payload: axios
-      .delete(`/api/pending/${id}`)
-      .then(res => res.data)
-      .catch(error => console.log(error))
+    payload: axios.delete(`/api/pending/${id}`)
   };
 }
 export function deleteConfirmed(id) {
   return {
     type: DELETE_CONFIRMED,
-    payload: axios
-      .delete(`/api/confirmed/${id}`)
-      .then(res => res.data)
-      .catch(error => console.log(error))
+    payload: axios.delete(`/api/confirmed/${id}`)
   };
 }
 export function addPending(start_date, end_date, dog_id) {
   return {
     type: ADD_PENDING,
-    payload: axios
-      .post("/api/pending", { start_date, end_date, dog_id })
-      .then(res => res.data)
-      .catch(error => console.log(error))
+    payload: axios.post("/api/pending", { start_date, end_date, dog_id })
   };
 }
 
@@ -73,32 +55,32 @@ export default function reducer(state = initialState, action) {
     case `${GET_PENDING}_FULFILLED`:
       return {
         ...state,
-        pending: action.payload
+        pending: action.payload.data
       };
     case `${GET_CONFIRMED}_FULFILLED`:
       return {
         ...state,
-        confirmed: action.payload
+        confirmed: action.payload.data
       };
     case `${GET_HISTORY}_FULFILLED`:
       return {
         ...state,
-        history: action.payload
+        history: action.payload.data
       };
     case `${DELETE_PENDING}_FULFILLED`:
       return {
         ...state,
-        pending: action.payload
+        pending: action.payload.data
       };
     case `${DELETE_CONFIRMED}_FULFILLED`:
       return {
         ...state,
-        confirmed: action.payload
+        confirmed: action.payload.data
       };
     case `${ADD_PENDING}_FULFILLED`:
       return {
         ...state,
-        pending: action.payload
+        pending: action.payload.data
       };
     default:
       return state;

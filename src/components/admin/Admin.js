@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { logout } from "../../ducks/authReducer";
 import { Link } from "react-router-dom";
-import { getAllPending, getOccupied } from "../../ducks/adminReducer";
+import {
+  getAllPending,
+  getOccupied,
+  deleteFromAllPending,
+  moveToConfirmed
+} from "../../ducks/adminReducer";
 import { deletePending } from "../../ducks/resReducer";
 import AssignDisplay from "./AssignDisplay";
 
@@ -10,130 +15,207 @@ class Admin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      assign: ""
+      assign: "",
+      kennels: [],
+      kennel: ""
     };
+    this.clickCancelHandler = this.clickCancelHandler.bind(this);
+    this.autoAssignKennel = this.autoAssignKennel.bind(this);
   }
   componentDidMount() {
     this.props.getAllPending();
   }
-  // need to figure out how to use this to display options and auto assign
+  async clickAssignHandler(start_date, end_date, index) {
+    let kennels = await this.openKennels(start_date, end_date);
+    this.setState({ assign: index, kennels });
+  }
+  async autoAssignKennel(res) {
+    let kennels = await this.openKennels(res.start_date, res.end_date);
+    let confirmed = { ...res, kennel: kennels[0] };
+    await this.props.moveToConfirmed(confirmed);
+    this.props.deleteFromAllPending(confirmed.pending_id);
+  }
+  async assignkennel(res) {
+    let kennel = +this.state.kennel;
+    let open = this.state.kennels.includes(kennel);
+    if (open) {
+      let confirmed = { ...res, kennel: kennel };
+      await this.props.moveToConfirmed(confirmed);
+      this.props.deleteFromAllPending(confirmed.pending_id);
+      this.setState({ assign: "", kennels: [], kennel: "" });
+    } else {
+      alert("Kennel All Ready Taken");
+    }
+  }
+  autoAssignAll() {
+    for (let i = this.props.pending.length - 1; i >= 0; i--) {
+      this.autoAssignKennel(this.props.pending[i]);
+    }
+  }
 
-  async openKennels(start, end) {
-    await this.props.getOccupied(start, end);
-    console.log(this.props.occupied);
+  async openKennels(start_date, end_date) {
+    await this.props.getOccupied(start_date, end_date);
     let kennels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    for (let i = 1; i <= 12; i++) {
-      for (let j = +start.substr(8, 2); j <= +end.substr(8, 2); j++)
+    let start = new Date(start_date);
+    let end = new Date(end_date);
+    for (
+      let j = start.getTime() / 1000 / 60 / 60 / 24;
+      j <= end.getTime() / 1000 / 60 / 60 / 24;
+      j++
+    ) {
+      for (let i = 0; i < kennels.length; i++) {
         for (let k = 0; k < this.props.occupied.length; k++) {
           if (
-            this.props.occupied[k].kennel === i &&
-            +this.props.occupied[k].start_date.substr(8, 2) < j &&
-            +this.props.occupied[k].end_date.substr(8, 2) > j
+            this.props.occupied[k].kennel === kennels[i] &&
+            new Date(this.props.occupied[k].start_date).getTime() /
+              1000 /
+              60 /
+              60 /
+              24 <
+              j &&
+            new Date(this.props.occupied[k].end_date).getTime() /
+              1000 /
+              60 /
+              60 /
+              24 >
+              j
           ) {
-            kennels.splice(kennels.indexOf(i), 1);
+            kennels.splice(i, 1);
           }
         }
+      }
     }
     return kennels;
+  }
+  clickCancelHandler() {
+    this.setState({ assign: "" });
   }
 
   render() {
     return (
       <div>
-        Admin Page
-        <Link to="/home">
-          <button onClick={() => this.props.logout()}>Logout</button>
-        </Link>
-        <h2>Pending Reservations</h2>
-        {/* table of pending reservations */}
-        {this.props.pending[0] && this.state.assign === "" ? (
-          <div>
-            <table>
-              <tbody>
-                <tr>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                  <th>Pet Name</th>
-                  <th>Client Name</th>
-                  <th>Cancel</th>
-                </tr>
-                {this.props.pending.map((row, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>
-                        {row.start_date
-                          .substr(0, 10)
-                          .split("-")
-                          .reverse()
-                          .join("-")}
-                      </td>
-                      <td>
-                        {row.end_date
-                          .substr(0, 10)
-                          .split("-")
-                          .reverse()
-                          .join("-")}
-                      </td>
-                      <td>{row.name}</td>
-                      <td>{`${row.first_name} ${row.last_name}`}</td>
-                      <td>
-                        <select>
-                          {this.openKennels(row.start_date, row.end_date).map(
-                            num => (
-                              <option>{num}</option>
-                            )
-                          )}
-                        </select>
-                        <button
-                          onClick={() => {
-                            this.props.deletePending(row.pending_id);
-                          }}
-                        >
-                          X
-                        </button>
-                        <button
-                          onClick={() => {
-                            console.log(this.state.assign);
-                            this.setState({ assign: index });
-                          }}
-                        >
-                          view kennels
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-            <button>auto assign all</button>
-          </div>
-        ) : !this.props.pending[0] && this.state.assign === "" ? (
-          <h5>No Reservations to Display</h5>
-        ) : (
-          <div>
-            <h5>
-              {`${this.props.pending[this.state.assign].start_date
-                .substr(0, 10)
-                .split("-")
-                .reverse()
-                .join("-")} - 
+        <ul className="portal_nav">
+          <Link to="/">
+            <button onClick={() => this.props.logout()}>Logout</button>
+          </Link>
+        </ul>
+        <div className="admin_container">
+          <h2>Pending Reservations</h2>
+          {/* table of pending reservations */}
+          {this.props.pending[0] && this.state.assign === "" ? (
+            <div>
+              <table>
+                <tbody>
+                  <tr>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Pet Name</th>
+                    <th>Client Name</th>
+                    <th>Cancel</th>
+                  </tr>
+                  {this.props.pending.map((row, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>
+                          {row.start_date
+                            .substr(0, 10)
+                            .split("-")
+                            .reverse()
+                            .join("-")}
+                        </td>
+                        <td>
+                          {row.end_date
+                            .substr(0, 10)
+                            .split("-")
+                            .reverse()
+                            .join("-")}
+                        </td>
+                        <td>{row.name}</td>
+                        <td>{`${row.first_name} ${row.last_name}`}</td>
+                        <td>
+                          <button
+                            onClick={() => {
+                              this.props.deletePending(row.pending_id);
+                            }}
+                          >
+                            X
+                          </button>
+                          <button
+                            onClick={() =>
+                              this.clickAssignHandler(
+                                row.start_date,
+                                row.end_date,
+                                index
+                              )
+                            }
+                          >
+                            view kennels
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+              <button onClick={() => this.autoAssignAll()}>
+                auto assign all
+              </button>
+            </div>
+          ) : !this.props.pending[0] && this.state.assign === "" ? (
+            <h5>No Reservations to Display</h5>
+          ) : (
+            <div>
+              <h5>
+                {`${this.props.pending[this.state.assign].start_date
+                  .substr(0, 10)
+                  .split("-")
+                  .reverse()
+                  .join("-")} - 
         
           ${this.props.pending[this.state.assign].end_date
             .substr(0, 10)
             .split("-")
             .reverse()
             .join("-")} ${this.props.pending[this.state.assign].name} ${
-                this.props.pending[this.state.assign].first_name
-              } ${this.props.pending[this.state.assign].last_name}`}
-            </h5>
-            <div>
-              <AssignDisplay
-                start={this.props.pending[this.state.assign].start_date}
-                end={this.props.pending[this.state.assign].end_date}
-              />
+                  this.props.pending[this.state.assign].first_name
+                } ${this.props.pending[this.state.assign].last_name}`}
+
+                <select
+                  onChange={e => this.setState({ kennel: e.target.value })}
+                >
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                  <option>11</option>
+                  <option>12</option>
+                </select>
+                <button
+                  onClick={() =>
+                    this.assignkennel(this.props.pending[this.state.assign])
+                  }
+                >
+                  Confirm
+                </button>
+              </h5>
+
+              <button onClick={() => this.clickCancelHandler()}>Cancel</button>
+              <div>
+                <AssignDisplay
+                  start={this.props.pending[this.state.assign].start_date}
+                  end={this.props.pending[this.state.assign].end_date}
+                  clickCancelHandler={this.clickCancelHandler}
+                />
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     );
   }
@@ -148,5 +230,12 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { logout, getAllPending, deletePending, getOccupied }
+  {
+    logout,
+    getAllPending,
+    deletePending,
+    getOccupied,
+    deleteFromAllPending,
+    moveToConfirmed
+  }
 )(Admin);

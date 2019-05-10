@@ -16,6 +16,9 @@ export default class Navbar extends Component {
       this.setState({ status: "close" });
     }
   }
+  clickLinkHandler() {
+    this.setState({ status: "close" });
+  }
   render() {
     return (
       <nav className="navbar">
@@ -35,33 +38,54 @@ export default class Navbar extends Component {
           />
 
           <ul className="navbar_links">
-            <Link to="/">
+            <Link className="link" to="/">
               <li className="navbar_link">Home</li>
             </Link>
-            <Link to="/services">
+            <Link className="link" to="/services">
               <li className="navbar_link">Services</li>
             </Link>
-            <Link to="/contact">
+            <Link className="link" to="/contact">
               <li className="navbar_link">Contact Us</li>
             </Link>
-            <Link to="/portal">
+            <Link className="link" to="/portal">
               <li className="navbar_link">Client Portal</li>
             </Link>
           </ul>
         </div>
+
         <div className={`menu_${this.state.status}`}>
           <ul className="menu_links">
-            <Link to="/">
-              <li className="navbar_link">Home</li>
+            <Link className="link" to="/">
+              <li
+                onClick={() => this.clickLinkHandler()}
+                className="navbar_link"
+              >
+                Home
+              </li>
             </Link>
-            <Link to="/services">
-              <li className="navbar_link">Services</li>
+            <Link className="link" to="/services">
+              <li
+                onClick={() => this.clickLinkHandler()}
+                className="navbar_link"
+              >
+                Services
+              </li>
             </Link>
-            <Link to="/contact">
-              <li className="navbar_link">Contact Us</li>
+            <Link className="link" to="/contact">
+              <li
+                onClick={() => this.clickLinkHandler()}
+                className="navbar_link"
+              >
+                Contact Us
+              </li>
             </Link>
-            <Link to="/portal">
-              <li className="navbar_link">Client Portal</li>
+            <Link className="link" to="/portal">
+              <li
+                onClick={() => this.clickLinkHandler()}
+                className="navbar_link"
+              >
+                Client Portal
+              </li>
             </Link>
           </ul>
         </div>

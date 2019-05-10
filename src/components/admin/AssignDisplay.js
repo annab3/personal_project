@@ -13,31 +13,43 @@ class AssignDisplay extends Component {
     await this.props.getOccupied(this.props.start, this.props.end);
     this.createDisplay();
   }
+
   createDisplay() {
-    console.log(this.props.occupied);
     let display = [];
+    let start = new Date(this.props.start);
+    let end = new Date(this.props.end);
     for (let i = 1; i <= 12; i++) {
       let innerDisplay = [];
       for (
-        let j = +this.props.start.substr(8, 2);
-        j <= +this.props.end.substr(8, 2);
+        let j = start.getTime() / 1000 / 60 / 60 / 24;
+        j <= end.getTime() / 1000 / 60 / 60 / 24;
         j++
       ) {
         let name = "";
         for (let k = 0; k < this.props.occupied.length; k++) {
           if (
             this.props.occupied[k].kennel === i &&
-            +this.props.occupied[k].start_date.substr(8, 2) < j &&
-            +this.props.occupied[k].end_date.substr(8, 2) > j
+            new Date(this.props.occupied[k].start_date).getTime() /
+              1000 /
+              60 /
+              60 /
+              24 <
+              j &&
+            new Date(this.props.occupied[k].end_date).getTime() /
+              1000 /
+              60 /
+              60 /
+              24 >
+              j
           ) {
             name = this.props.occupied[k].name;
           }
         }
         innerDisplay.push(name);
       }
+      innerDisplay.unshift(`Kennel: ${i}`);
       display.push(innerDisplay);
     }
-    console.log(display);
     this.setState({ display });
   }
   render() {

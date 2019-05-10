@@ -12,41 +12,43 @@ const GET_ALL_PENDING = "GET_ALL_PENDING";
 const GET_ALL_CONFIRMED = "GET_ALL_CONFIRMED";
 const GET_ALL_HISTORY = "GET_ALL_HISTORY";
 const GET_OCCUPIED = "GET_OCCUPIED";
+const MOVE_TO_CONFIRMED = "MOVE_TO_CONFIRMED";
+const DELETE_FROM_ALL_PENDING = "DELETE_FROM_ALL_PENDING";
 
 export function getAllPending() {
   return {
     type: GET_ALL_PENDING,
-    payload: axios
-      .get("/api/admin/pending")
-      .then(res => res.data)
-      .catch(error => console.log(error))
+    payload: axios.get("/api/admin/pending")
   };
 }
 export function getAllConfirmed() {
   return {
     type: GET_ALL_CONFIRMED,
-    payload: axios
-      .get("/api/admin/confirmed")
-      .then(res => res.data)
-      .catch(error => console.log(error))
+    payload: axios.get("/api/admin/confirmed")
   };
 }
 export function getAllHistory() {
   return {
     type: GET_ALL_HISTORY,
-    payload: axios
-      .get("/api/admin/histroy")
-      .then(res => res.data)
-      .catch(error => console.log(error))
+    payload: axios.get("/api/admin/histroy")
   };
 }
 export function getOccupied(start, end) {
   return {
     type: GET_OCCUPIED,
-    payload: axios
-      .post("/api/admin/occupied", { start, end })
-      .then(res => res.data)
-      .catch(error => console.log(error))
+    payload: axios.post("/api/admin/occupied", { start, end })
+  };
+}
+export function moveToConfirmed(reservation) {
+  return {
+    type: MOVE_TO_CONFIRMED,
+    payload: axios.post("/api/admin/confirmed", reservation)
+  };
+}
+export function deleteFromAllPending(id) {
+  return {
+    type: DELETE_FROM_ALL_PENDING,
+    payload: axios.delete(`/api/admin/pending/${id}`)
   };
 }
 
@@ -55,22 +57,32 @@ export default function reducer(state = initialState, action) {
     case `${GET_ALL_PENDING}_FULFILLED`:
       return {
         ...state,
-        allPending: action.payload
+        allPending: action.payload.data
       };
     case `${GET_ALL_CONFIRMED}_FULFILLED`:
       return {
         ...state,
-        allConfirmed: action.payload
+        allConfirmed: action.payload.data
       };
     case `${GET_ALL_HISTORY}_FULFILLED`:
       return {
         ...state,
-        allHistory: action.payload
+        allHistory: action.payload.data
       };
     case `${GET_OCCUPIED}_FULFILLED`:
       return {
         ...state,
-        occupied: action.payload
+        occupied: action.payload.data
+      };
+    case `${MOVE_TO_CONFIRMED}_FULFILLED`:
+      return {
+        ...state,
+        allConfirmed: action.payload.data
+      };
+    case `${DELETE_FROM_ALL_PENDING}_FULFILLED`:
+      return {
+        ...state,
+        allPending: action.payload.data
       };
     default:
       return state;

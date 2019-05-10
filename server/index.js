@@ -32,7 +32,9 @@ const {
   getAllPending,
   getAllConfirmed,
   getAllHistory,
-  getOccupied
+  getOccupied,
+  addConfirmed,
+  deleteFromAllPending
 } = require("./adminControllers");
 const { getSession } = require("./middleware");
 
@@ -42,25 +44,6 @@ massive(CONNECTION_STRING)
     console.log("Database Connected");
   })
   .catch(error => console.log(error));
-
-// AWS.config.update({
-//   accessKeyId: AWS_ACCESS_KEY,
-//   secretAccessKey: AWS_SECRECT_ACCESS_KEY
-// });
-
-// AWS.config.setPromisesDependency(bluebird);
-// const s3 = new AWS.S3();
-
-// const uploadFile = (buffer, name, type) => {
-//   const params = {
-//     ACL: "public-read",
-//     Body: buffer,
-//     Bucket: BUCKET_NAME,
-//     ContentType: type.mime,
-//     Key: `${name}.${type.ext}`
-//   };
-//   return s3.upload(params).promise();
-// };
 
 app.use(
   express.json(),
@@ -91,5 +74,7 @@ app.get("/api/admin/confirmed", getAllConfirmed);
 app.get("/api/admin/history", getAllHistory);
 app.post("/api/admin/occupied", getOccupied);
 app.post("/test-upload", uploadFiles);
+app.post("/api/admin/confirmed", addConfirmed);
+app.delete("/api/admin/pending/:id", deleteFromAllPending);
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

@@ -6,10 +6,6 @@ class Welcome extends Component {
     return (
       <div className="welcome_message">
         <h1>Welcome back, {this.props.client.first_name}!</h1>
-        <img
-          alt="alt logo"
-          src="https://s3.us-east-2.amazonaws.com/dev-dogs/bucketFolder/dm_white_logo.png"
-        />
       </div>
     );
   }

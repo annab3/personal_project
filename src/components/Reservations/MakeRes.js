@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addPending } from "../../ducks/resReducer";
 import { Link } from "react-router-dom";
+import DayPickerInput from "react-day-picker/DayPickerInput";
+import "react-day-picker/lib/style.css";
 
 class MakeRes extends Component {
   constructor(props) {
@@ -13,13 +15,18 @@ class MakeRes extends Component {
     };
   }
   clickHandlerSubmit() {
-    this.props.addPending(
-      this.state.start_date,
-      this.state.end_date,
-      this.state.pet
-    );
-    this.setState({ pet: 0, start_date: "", end_date: "" });
+    if (this.state.start_date < this.state.end_date) {
+      this.props.addPending(
+        this.state.start_date,
+        this.state.end_date,
+        this.state.pet
+      );
+      this.setState({ pet: 0, start_date: "", end_date: "" });
+    } else {
+      alert("Invalid Dates");
+    }
   }
+
   render() {
     return (
       <form>
@@ -35,16 +42,12 @@ class MakeRes extends Component {
         </select>
         {/* need to add drop down calender! */}
         <label>Select Start Date</label>
-        <input
-          required
-          onChange={e => this.setState({ start_date: e.target.value })}
+        <DayPickerInput
+          onDayChange={day => this.setState({ start_date: day })}
         />
         <label>Select End Date</label>
-        <input
-          required
-          onChange={e => this.setState({ end_date: e.target.value })}
-        />
-        <Link to="/portal/resevations">
+        <DayPickerInput onDayChange={day => this.setState({ end_date: day })} />
+        <Link to="/portal/reservations">
           <button onClick={() => this.clickHandlerSubmit()}>Submit</button>
         </Link>
       </form>

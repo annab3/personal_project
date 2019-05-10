@@ -14,31 +14,40 @@ class Login extends Component {
       return <Redirect to="/admin" />;
     } else {
       return (
-        <div>
-          <input
-            required
-            placeholder="username"
-            onChange={e => {
-              this.props.updateUsername(e.target.value);
-            }}
-          />
-          <input
-            required
-            type="password"
-            placeholder="password"
-            onChange={e => this.props.updatePassword(e.target.value)}
-          />
-          <button
-            value="login"
-            onClick={() =>
-              this.props.login(this.props.username, this.props.password)
-            }
-          >
-            Login
-          </button>
-          <Link to="/register">
-            <button>Register</button>
-          </Link>
+        <div className="login_page">
+          <div className="login_register_contianer">
+            <div className="login_container">
+              <input
+                className="login_input"
+                required
+                placeholder="username"
+                onChange={e => {
+                  this.props.updateUsername(e.target.value);
+                }}
+              />
+              <input
+                className="login_input"
+                required
+                type="password"
+                placeholder="password"
+                onChange={e => this.props.updatePassword(e.target.value)}
+              />
+              <button
+                value="login"
+                className="login_page-button"
+                onClick={() =>
+                  this.props.login(this.props.username, this.props.password)
+                }
+              >
+                Login
+              </button>
+            </div>
+            <div className="register_container">
+              <Link to="/register">
+                <button className="login_page-button">Register</button>
+              </Link>
+            </div>
+          </div>
         </div>
       );
     }
