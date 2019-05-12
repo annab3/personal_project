@@ -15,7 +15,8 @@ class Register extends Component {
       address: "",
       city: "",
       state: "",
-      zip: ""
+      zip: "",
+      email: ""
     };
   }
   render() {
@@ -23,35 +24,35 @@ class Register extends Component {
       <div>
         Register
         <form>
-          <label>username</label>
+          <label>Username</label>
           <input
             required
             onChange={e => {
               this.setState({ username: e.target.value });
             }}
           />
-          <label>password</label>
+          <label>Password</label>
           <input
             required
             onChange={e => {
               this.setState({ password: e.target.value });
             }}
           />
-          <label>first name</label>
+          <label>First Name</label>
           <input
             required
             onChange={e => {
               this.setState({ first_name: e.target.value });
             }}
           />
-          <label>last name</label>
+          <label>Last Name</label>
           <input
             required
             onChange={e => {
               this.setState({ last_name: e.target.value });
             }}
           />
-          <label>pimary phone number</label>
+          <label>Pimary Phone Number</label>
           <input
             required
             type="tel"
@@ -59,7 +60,7 @@ class Register extends Component {
               this.setState({ primary_phone: e.target.value });
             }}
           />
-          <label>secondary phone number</label>
+          <label>Secondary Phone Number</label>
           <input
             required
             type="tel"
@@ -67,32 +68,39 @@ class Register extends Component {
               this.setState({ secondary_phone: e.target.value });
             }}
           />
-          <label>street address</label>
+          <label>Street Address</label>
           <input
             required
             onChange={e => {
               this.setState({ address: e.target.value });
             }}
           />
-          <label>city</label>
+          <label>City</label>
           <input
             required
             onChange={e => {
               this.setState({ city: e.target.value });
             }}
           />
-          <label>state</label>
+          <label>State</label>
           <input
             required
             onChange={e => {
               this.setState({ state: e.target.value });
             }}
           />
-          <label>zipcode</label>
+          <label>Zipcode</label>
           <input
             required
             onChange={e => {
               this.setState({ zip: e.target.value });
+            }}
+          />
+          <label>Email</label>
+          <input
+            required
+            onChange={e => {
+              this.setState({ email: e.target.value });
             }}
           />
           <button
@@ -107,7 +115,8 @@ class Register extends Component {
                 this.state.address,
                 this.state.city,
                 this.state.state,
-                this.state.zip
+                this.state.zip,
+                this.state.email
               );
             }}
           >

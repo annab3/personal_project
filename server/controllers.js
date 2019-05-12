@@ -20,7 +20,10 @@ const login = async (req, res) => {
       console.log("2");
       res.status(403).json("Wrong username or password");
     } else {
-      req.session.user = { client_id: client[0].client_id };
+      req.session.user = {
+        client_id: client[0].client_id,
+        email: client[0].email
+      };
       res.status(200).json(client[0]);
     }
   }
@@ -47,7 +50,8 @@ const register = async (req, res) => {
     address,
     city,
     state,
-    zip
+    zip,
+    email
   } = req.body;
   let taken = await req.app.get("db").login(username);
   if (taken[0]) {
@@ -66,7 +70,8 @@ const register = async (req, res) => {
         address,
         city,
         state,
-        +zip
+        +zip,
+        email
       ]);
     req.session.user = { client_id: client[0].client_id };
     res.status(200).json(client[0]);

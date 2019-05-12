@@ -90,6 +90,15 @@ class Admin extends Component {
   clickCancelHandler() {
     this.setState({ assign: "" });
   }
+  displayDate(date) {
+    let newDate = new Date(date).toString();
+
+    let endDate = newDate
+      .split(" ")
+      .splice(0, 4)
+      .join(" ");
+    return endDate;
+  }
 
   render() {
     return (
@@ -116,20 +125,8 @@ class Admin extends Component {
                   {this.props.pending.map((row, index) => {
                     return (
                       <tr key={index}>
-                        <td>
-                          {row.start_date
-                            .substr(0, 10)
-                            .split("-")
-                            .reverse()
-                            .join("-")}
-                        </td>
-                        <td>
-                          {row.end_date
-                            .substr(0, 10)
-                            .split("-")
-                            .reverse()
-                            .join("-")}
-                        </td>
+                        <td>{this.displayDate(row.start_date)}</td>
+                        <td>{this.displayDate(row.end_date)}</td>
                         <td>{row.name}</td>
                         <td>{`${row.first_name} ${row.last_name}`}</td>
                         <td>
@@ -166,19 +163,15 @@ class Admin extends Component {
           ) : (
             <div>
               <h5>
-                {`${this.props.pending[this.state.assign].start_date
-                  .substr(0, 10)
-                  .split("-")
-                  .reverse()
-                  .join("-")} - 
+                {`${this.displayDate(
+                  this.props.pending[this.state.assign].start_date
+                )} - 
         
-          ${this.props.pending[this.state.assign].end_date
-            .substr(0, 10)
-            .split("-")
-            .reverse()
-            .join("-")} ${this.props.pending[this.state.assign].name} ${
-                  this.props.pending[this.state.assign].first_name
-                } ${this.props.pending[this.state.assign].last_name}`}
+          ${this.displayDate(this.props.pending[this.state.assign].end_date)} ${
+                  this.props.pending[this.state.assign].name
+                } ${this.props.pending[this.state.assign].first_name} ${
+                  this.props.pending[this.state.assign].last_name
+                }`}
 
                 <select
                   onChange={e => this.setState({ kennel: e.target.value })}

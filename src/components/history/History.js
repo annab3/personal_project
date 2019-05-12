@@ -6,6 +6,15 @@ class History extends Component {
   componentDidMount() {
     this.props.getHistory();
   }
+  displayDate(date) {
+    let newDate = new Date(date).toString();
+
+    let endDate = newDate
+      .split(" ")
+      .splice(0, 4)
+      .join(" ");
+    return endDate;
+  }
   render() {
     return (
       <div className="history_container">
@@ -22,20 +31,8 @@ class History extends Component {
                 return (
                   <tr key={index}>
                     <td>{row.name}</td>
-                    <td>
-                      {row.start_date
-                        .substr(0, 10)
-                        .split("-")
-                        .reverse()
-                        .join("-")}
-                    </td>
-                    <td>
-                      {row.end_date
-                        .substr(0, 10)
-                        .split("-")
-                        .reverse()
-                        .join("-")}
-                    </td>
+                    <td>{this.displayDate(row.start_date)}</td>
+                    <td>{this.displayDate(row.end_date)}</td>
                   </tr>
                 );
               })}

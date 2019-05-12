@@ -62,23 +62,32 @@
   @extend %flex-box-center;
   width: 100vw;
   flex-direction: column;
+  background-image: url("https://static.bhphotovideo.com/explora/sites/default/files/grass_0.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 20px;
+  background-color: #497403;
 }
 .pet_profile_container {
   @extend %flex-box-center;
-  width: 40vw;
+  width: 500px;
   min-height: 60vh;
   border: 1px solid black;
   flex-direction: column;
+  background: $p2;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 .client_profile_container {
   @extend %flex-box-center;
-  width: 40vw;
+  width: 500px;
   height: 60vh;
   border: 1px solid black;
+  background: $p2;
 }
 .portal_nav {
   @extend %flex-box-center;
-  margin-top: 0px;
+  margin: 0px;
   padding-top: 10px;
   padding-bottom: 10px;
   background: $p1;
@@ -91,20 +100,45 @@
   @extend %flex-box-center;
   flex-direction: column;
 }
+.boarding_price_container {
+  width: 100vw;
+  height: 300px;
+  background: $p2;
+  @extend %flex-box-center;
+}
+.parallax {
+  background-image: url("https://s3.us-east-2.amazonaws.com/dev-dogs/bucketFolder/52598923_1004386023085929_4662875886792474624_n.jpg");
+  height: 300px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.parallax2 {
+  background-image: url("https://s3.us-east-2.amazonaws.com/dev-dogs/bucketFolder/58114950_1038247773033087_3720518525421355008_n.jpg");
+  height: 300px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.services_container {
+  min-height: 100vh;
+}
 table {
   tr:nth-child(odd) {
     background-color: $p1;
   }
+  tr:nth-child(even) {
+    background-color: white;
+  }
   border: 3px solid black;
   width: 600px;
 }
+
 td {
   height: 50px;
   text-align: center;
-}
-.services_container {
-  @extend %flex-box-center;
-  min-height: 100vh;
 }
 
 .main {
@@ -161,11 +195,13 @@ li {
   width: 40vw;
   margin-right: 20px;
 }
+
 .navbar_link {
   color: white;
   font-weight: bold;
   font-size: 14pt;
 }
+
 .logo {
   height: 80px;
   padding-top: 10px;
@@ -178,16 +214,41 @@ li {
 .admin_container {
   @extend %flex-box-center;
   justify-content: center;
+  flex-direction: column;
 }
 h2 {
   margin-top: 0px;
 }
 .contact_page {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   min-height: 100vh;
   flex-direction: column;
+  padding-top: 100px;
+}
+.contact_card {
+  height: 200px;
+  width: 500px;
+  margin: 100px;
+  background: white;
+  padding: 30px;
+  display: flex;
+  box-shadow: 5px 10px rgb(68, 68, 68);
+  h3 {
+    margin: 0px;
+    color: $p1;
+  }
+  h2 {
+    color: $p1;
+  }
+  img {
+    height: 200px;
+    margin-right: 50px;
+  }
+}
+#contact_card_logo {
+  height: 40px;
 }
 .home_container {
   @extend %flex-box-center;
@@ -198,9 +259,12 @@ h2 {
 }
 .text_container {
   display: flex;
+  align-items: center;
+  justify-content: center;
   // border: 1px solid red;
-  width: 70vw;
-  min-height: 30vh;
+  width: 100cw;
+  min-height: 300px;
+  // margin-bottom: 300px;
   p {
     font-weight: bold;
     padding: 20px;
@@ -283,6 +347,27 @@ h2 {
     overflow: hidden;
   }
 }
+@media (max-width: 600px) {
+  .login_register_contianer {
+    flex-direction: column;
+  }
+  .login_container {
+    border: none;
+  }
+  .register_container {
+    border: none;
+  }
+  .text_container {
+    display: flex;
+    width: 70vw;
+    min-height: 30vh;
+    p {
+      font-weight: bold;
+      padding: 20px;
+      width: 200px;
+    }
+  }
+}
 @keyframes close {
   from {
     height: 200px;
@@ -302,7 +387,7 @@ h2 {
 .home_overlay_logo {
   position: absolute;
   z-index: 1;
-  top: 40%;
+  top: 270px;
   @include fadein(overlay 6s);
 }
 @keyframes overlay {

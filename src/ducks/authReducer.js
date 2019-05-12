@@ -37,7 +37,8 @@ export function register(
   address,
   city,
   state,
-  zip
+  zip,
+  email
 ) {
   return {
     type: REGISTER,
@@ -51,7 +52,8 @@ export function register(
       address,
       city,
       state,
-      zip
+      zip,
+      email
     })
   };
 }

@@ -13,6 +13,15 @@ class Reservations extends Component {
     this.props.getConfirmed();
     this.props.getPending();
   }
+  displayDate(date) {
+    let newDate = new Date(date).toString();
+
+    let endDate = newDate
+      .split(" ")
+      .splice(0, 4)
+      .join(" ");
+    return endDate;
+  }
   render() {
     return (
       <div className="reservation_container">
@@ -35,20 +44,8 @@ class Reservations extends Component {
                 return (
                   <tr key={index}>
                     <td>{row.name}</td>
-                    <td>
-                      {row.start_date
-                        .substr(0, 10)
-                        .split("-")
-                        .reverse()
-                        .join("-")}
-                    </td>
-                    <td>
-                      {row.end_date
-                        .substr(0, 10)
-                        .split("-")
-                        .reverse()
-                        .join("-")}
-                    </td>
+                    <td>{this.displayDate(row.start_date)}</td>
+                    <td>{this.displayDate(row.end_date)}</td>
                     <td>
                       <button
                         onClick={() => {
@@ -82,20 +79,8 @@ class Reservations extends Component {
                 return (
                   <tr key={index}>
                     <td>{row.name}</td>
-                    <td>
-                      {row.start_date
-                        .substr(0, 10)
-                        .split("-")
-                        .reverse()
-                        .join("-")}
-                    </td>
-                    <td>
-                      {row.end_date
-                        .substr(0, 10)
-                        .split("-")
-                        .reverse()
-                        .join("-")}
-                    </td>
+                    <td>{this.displayDate(row.start_date)}</td>
+                    <td>{this.displayDate(row.end_date)}</td>
                     <td>
                       <button
                         onClick={() => {

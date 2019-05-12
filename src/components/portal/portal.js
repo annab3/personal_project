@@ -18,16 +18,16 @@ class Portal extends Component {
       return (
         <div className="portal_container">
           <ul className="portal_nav">
-            <Link to="/portal/profile">
-              <li>Profile</li>
+            <Link className="link" to="/portal/profile">
+              <li className="navbar_link">Profile</li>
             </Link>
-            <Link to="/portal/reservations">
-              <li>Reservations</li>
+            <Link className="link" to="/portal/reservations">
+              <li className="navbar_link">Reservations</li>
             </Link>
-            <Link to="/portal/history">
-              <li>History</li>
+            <Link className="link" to="/portal/history">
+              <li className="navbar_link">History</li>
             </Link>
-            <Link to="/">
+            <Link className="link" to="/">
               <button onClick={() => this.props.logout()}>Logout</button>
             </Link>
           </ul>

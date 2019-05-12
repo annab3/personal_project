@@ -39,7 +39,7 @@ const addConfirmed = async (req, res) => {
       +req.body.kennel
     ])
     .catch(error => console.log(error));
-  email();
+  email(req.session.user.email);
   res.status(200).json(confirmed);
 };
 const deleteFromAllPending = async (req, res) => {
@@ -50,7 +50,7 @@ const deleteFromAllPending = async (req, res) => {
   res.status(200).json(pending);
 };
 
-function email() {
+function email(email) {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     service: "gmail",
@@ -63,7 +63,7 @@ function email() {
   // send mail with defined transport object
   let info = {
     // from: "Dev Dogs", // sender address
-    to: "arebekahbradley@gmail.com", // list of receivers
+    to: email, // list of receivers
     subject: "Reservation Confirmation", // Subject line
     text: "Hello world?", // plain text body
     html: "<b>Hello world?</b>" // html body
