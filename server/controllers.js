@@ -51,7 +51,8 @@ const register = async (req, res) => {
     city,
     state,
     zip,
-    email
+    email,
+    client_picture
   } = req.body;
   let taken = await req.app.get("db").login(username);
   if (taken[0]) {
@@ -71,7 +72,8 @@ const register = async (req, res) => {
         city,
         state,
         +zip,
-        email
+        email,
+        client_picture
       ]);
     req.session.user = { client_id: client[0].client_id };
     res.status(200).json(client[0]);
@@ -119,9 +121,9 @@ const editUser = async (req, res) => {
     address,
     city,
     state,
-    zip
+    zip,
+    client_picture
   } = req.body;
-  console.log(req.body);
   let client = await req.app
     .get("db")
     .edit_user([
@@ -133,7 +135,8 @@ const editUser = async (req, res) => {
       city,
       state,
       zip,
-      req.session.user.client_id
+      req.session.user.client_id,
+      client_picture
     ])
     .catch(error => console.log(error));
   res.status(200).json(client[0]);

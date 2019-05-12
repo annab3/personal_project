@@ -6,7 +6,8 @@ SET first_name = $1,
     address = $5,
     city = $6,
     state = $7,
-    zip = $8
+    zip = $8,
+    client_picture = $10
 WHERE client_id = $9;
 
 SELECT * FROM client WHERE client_id = $9;

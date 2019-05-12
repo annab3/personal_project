@@ -17,7 +17,16 @@ class ClientProfile extends Component {
     this.setState({ edit_client: {}, edit: false });
   }
   clickHandlerSubmitUserEdit() {
-    this.props.editClient(this.state.edit_client);
+    if (this.props.client_picture != "") {
+      let edit_client = {
+        ...this.state.edit_client,
+        client_picture: this.props.pet_picture
+      };
+      this.props.editClient(edit_client);
+    } else {
+      this.props.editClient(this.state.edit_client);
+    }
+
     this.setState({ edit_client: {}, edit: false });
   }
   clickHandlerCancelPetEdit() {
@@ -41,6 +50,19 @@ class ClientProfile extends Component {
         <div className="client_profile_container">
           {!this.state.edit ? (
             <div>
+              {this.props.client.client_picture ? (
+                <img
+                  className="profile_img"
+                  src={this.props.client.client_picture}
+                  alt={this.props.client.first_name}
+                />
+              ) : (
+                <img
+                  className="profile_img"
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png"
+                  alt="nothing provided"
+                />
+              )}
               <h5>
                 Name: {this.props.client.first_name}{" "}
                 {this.props.client.last_name}
@@ -61,6 +83,10 @@ class ClientProfile extends Component {
             </div>
           ) : (
             <div>
+              <h5>
+                Picture:
+                <FileUpload />
+              </h5>
               <h5>
                 Name:
                 <input

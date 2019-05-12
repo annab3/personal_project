@@ -5,7 +5,8 @@ const initialState = {
   password: "",
   client: {},
   pets: [],
-  pet_picture: ""
+  pet_picture: "",
+  client_picture: ""
 };
 
 const GET_USER = "GET_USER";
@@ -19,6 +20,7 @@ const UPDATE_PASSWORD = "UPDATE_PASSWORD";
 const EDIT_CLIENT = "EDIT_CLIENT";
 const EDIT_PETS = "EDIT_PETS";
 const UPDATE_PET_PICTURE = "UPDATE_PET_PICTURE";
+const UPDATE_CLIENT_PICTURE = "UPDATE_CLIENT_PICTURE";
 
 export function getPets() {
   return {
@@ -27,34 +29,10 @@ export function getPets() {
   };
 }
 
-export function register(
-  username,
-  password,
-  first_name,
-  last_name,
-  primary_phone,
-  secondary_phone,
-  address,
-  city,
-  state,
-  zip,
-  email
-) {
+export function register(newclient) {
   return {
     type: REGISTER,
-    payload: axios.post("/api/register", {
-      username,
-      password,
-      first_name,
-      last_name,
-      primary_phone,
-      secondary_phone,
-      address,
-      city,
-      state,
-      zip,
-      email
-    })
+    payload: axios.post("/api/register", { newclient })
   };
 }
 
@@ -131,6 +109,12 @@ export function updatePetPicture(url) {
     payload: url
   };
 }
+export function updateClietPicture(url) {
+  return {
+    type: UPDATE_CLIENT_PICTURE,
+    payload: url
+  };
+}
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -165,17 +149,17 @@ export default function reducer(state = initialState, action) {
         pets: action.payload.data,
         pet_picture: ""
       };
-    case "UPDATE_USERNAME":
+    case UPDATE_USERNAME:
       return {
         ...state,
         username: action.payload
       };
-    case "UPDATE_PASSWORD":
+    case UPDATE_PASSWORD:
       return {
         ...state,
         password: action.payload
       };
-    case "LOGOUT":
+    case LOGOUT:
       return {
         ...state,
         username: "",
@@ -194,10 +178,15 @@ export default function reducer(state = initialState, action) {
         pets: action.payload.data,
         pet_picture: ""
       };
-    case "UPDATE_PET_PICTURE":
+    case UPDATE_PET_PICTURE:
       return {
         ...state,
         pet_picture: action.payload
+      };
+    case UPDATE_CLIENT_PICTURE:
+      return {
+        ...state,
+        client_picture: action.payload
       };
     default:
       return state;

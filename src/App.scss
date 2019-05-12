@@ -12,6 +12,7 @@
   justify-content: space-around;
   align-items: center;
 }
+
 .link {
   text-decoration: none;
 }
@@ -49,13 +50,16 @@
   border: 1px solid $p1;
 }
 .register_container {
-  height: 400px;
-  width: 350px;
+  height: 700px;
+  width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border: 1px solid $p1;
+  input {
+    margin: 5px;
+  }
 }
 
 .profile_container {
@@ -100,11 +104,20 @@
   @extend %flex-box-center;
   flex-direction: column;
 }
+.register_page {
+  @extend %flex-box-center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
 .boarding_price_container {
   width: 100vw;
   height: 300px;
   background: $p2;
   @extend %flex-box-center;
+  flex-direction: column;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 .parallax {
   background-image: url("https://s3.us-east-2.amazonaws.com/dev-dogs/bucketFolder/52598923_1004386023085929_4662875886792474624_n.jpg");

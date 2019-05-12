@@ -12,10 +12,10 @@ export default function Services() {
         />
         <p>
           It’s important to get to know your pup care provider, as you are
-          trusting us with a furry member of your family. With Camp Bow Wow®,
-          you can rest assured your dog is in the best, most qualified hands in
-          the business. Since 2000, we have been providing fun and dependable
-          dog care services parents and pups love.
+          trusting us with a furry member of your family. With Dev Dogs, you can
+          rest assured your dog is in the best, most qualified hands in the
+          business. We provide fun and dependable dog care services parents and
+          pups love.
         </p>
       </div>
       <div class="parallax" />
