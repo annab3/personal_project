@@ -18,7 +18,8 @@ class History extends Component {
   render() {
     return (
       <div className="history_container">
-        Past Reservations
+        <br />
+        <h2>Past Reservations</h2>
         {this.props.history[0] ? (
           <table>
             <tbody>

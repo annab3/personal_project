@@ -25,14 +25,13 @@ class Reservations extends Component {
   render() {
     return (
       <div className="reservation_container">
-        Reservations
         <Link to="/portal/make_reservation">
-          <button>Make New Reservation</button>
+          <button className="login_page-button">New Reservation</button>
         </Link>
         <h2>Pending Reservations</h2>
         {/* table of pending reservations */}
         {this.props.pending[0] ? (
-          <table>
+          <table className="reservation_table">
             <tbody>
               <tr>
                 <th>Name</th>
@@ -47,13 +46,13 @@ class Reservations extends Component {
                     <td>{this.displayDate(row.start_date)}</td>
                     <td>{this.displayDate(row.end_date)}</td>
                     <td>
-                      <button
+                      <h3
                         onClick={() => {
                           this.props.deletePending(row.pending_id);
                         }}
                       >
                         X
-                      </button>
+                      </h3>
                     </td>
                   </tr>
                 );
@@ -67,7 +66,7 @@ class Reservations extends Component {
         <h2>Confirmed Reservations</h2>
         {/* table of confirmed reservations */}
         {this.props.confirmed[0] ? (
-          <table>
+          <table className="reservation_table">
             <tbody>
               <tr>
                 <th>Name</th>
@@ -82,13 +81,13 @@ class Reservations extends Component {
                     <td>{this.displayDate(row.start_date)}</td>
                     <td>{this.displayDate(row.end_date)}</td>
                     <td>
-                      <button
+                      <h3
                         onClick={() => {
                           this.props.deleteConfirmed(row.id);
                         }}
                       >
                         X
-                      </button>
+                      </h3>
                     </td>
                   </tr>
                 );

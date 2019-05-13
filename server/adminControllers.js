@@ -2,11 +2,16 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 const getAllPending = async (req, res) => {
+  let date = new Date().toISOString().split("T")[0];
   let pending = await req.app
     .get("db")
-    .get_all_pending()
+    .get_all_pending(date)
     .catch(error => console.log(error));
-  res.status(200).json(pending);
+  if (pending[0]) {
+    res.status(200).json(pending);
+  } else {
+    res.sendStatus(200);
+  }
 };
 const getAllConfirmed = async (req, res) => {
   let confirmed = await req.app

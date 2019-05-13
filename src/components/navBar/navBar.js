@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { logout } from "../../ducks/authReducer";
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -87,9 +89,32 @@ export default class Navbar extends Component {
                 Client Portal
               </li>
             </Link>
+            {this.props.client.username ? (
+              <Link className="link" to="/">
+                <li
+                  className="navbar_link"
+                  onClick={() => {
+                    this.clickLinkHandler();
+                    this.props.logout();
+                  }}
+                >
+                  Logout
+                </li>
+              </Link>
+            ) : null}
           </ul>
         </div>
       </nav>
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    client: state.authReducer.client
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  { logout }
+)(Navbar);

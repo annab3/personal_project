@@ -6,16 +6,18 @@ const getPending = async (req, res) => {
   res.status(200).json(pending);
 };
 const getConfirmed = async (req, res) => {
+  let date = new Date().toISOString().split("T")[0];
   let confirmed = await req.app
     .get("db")
-    .get_confirmed(+req.session.user.client_id)
+    .get_confirmed([+req.session.user.client_id, date])
     .catch(error => console.log(error));
   res.status(200).json(confirmed);
 };
 const getHistory = async (req, res) => {
+  let date = new Date().toISOString().split("T")[0];
   let history = await req.app
     .get("db")
-    .get_history(+req.session.user.client_id)
+    .get_history([+req.session.user.client_id, date])
     .catch(error => console.log(error));
   res.status(200).json(history);
 };

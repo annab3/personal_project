@@ -27,9 +27,9 @@ class Portal extends Component {
             <Link className="link" to="/portal/history">
               <li className="navbar_link">History</li>
             </Link>
-            <Link className="link" to="/">
-              <button onClick={() => this.props.logout()}>Logout</button>
-            </Link>
+            <li className="logout_button" onClick={() => this.props.logout()}>
+              Logout
+            </li>
           </ul>
           {portalRoutes}
         </div>

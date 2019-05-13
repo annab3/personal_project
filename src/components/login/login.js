@@ -42,7 +42,7 @@ class Login extends Component {
                 Login
               </button>
             </div>
-            <div className="register_container">
+            <div className="login_container">
               <Link to="/register">
                 <button className="login_page-button">Register</button>
               </Link>

@@ -18,9 +18,9 @@ export default function Services() {
           pups love.
         </p>
       </div>
-      <div class="parallax" />
+      <div className="parallax" />
       <div className="boarding_price_container">
-        <table>
+        <table className="reservation_table">
           <tbody>
             <tr>
               <th>Overnight Camp Service</th>

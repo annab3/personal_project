@@ -112,49 +112,57 @@ class Admin extends Component {
           <h2>Pending Reservations</h2>
           {/* table of pending reservations */}
           {this.props.pending[0] && this.state.assign === "" ? (
-            <div>
-              <table>
-                <tbody>
-                  <tr>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Pet Name</th>
-                    <th>Client Name</th>
-                    <th>Cancel</th>
-                  </tr>
-                  {this.props.pending.map((row, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>{this.displayDate(row.start_date)}</td>
-                        <td>{this.displayDate(row.end_date)}</td>
-                        <td>{row.name}</td>
-                        <td>{`${row.first_name} ${row.last_name}`}</td>
-                        <td>
-                          <button
-                            onClick={() => {
-                              this.props.deletePending(row.pending_id);
-                            }}
-                          >
-                            X
-                          </button>
-                          <button
-                            onClick={() =>
-                              this.clickAssignHandler(
-                                row.start_date,
-                                row.end_date,
-                                index
-                              )
-                            }
-                          >
-                            view kennels
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-              <button onClick={() => this.autoAssignAll()}>
+            <div className="container">
+              <div>
+                <table>
+                  <tbody>
+                    <tr>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Pet Name</th>
+                      <th>Client Name</th>
+                      <th>Cancel</th>
+                      <th>Availability</th>
+                    </tr>
+                    {this.props.pending.map((row, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>{this.displayDate(row.start_date)}</td>
+                          <td>{this.displayDate(row.end_date)}</td>
+                          <td>{row.name}</td>
+                          <td>{`${row.first_name} ${row.last_name}`}</td>
+                          <td>
+                            <button
+                              onClick={() => {
+                                this.props.deletePending(row.pending_id);
+                              }}
+                            >
+                              X
+                            </button>
+                          </td>
+                          <td>
+                            <button
+                              onClick={() =>
+                                this.clickAssignHandler(
+                                  row.start_date,
+                                  row.end_date,
+                                  index
+                                )
+                              }
+                            >
+                              view kennels
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              <button
+                className="login_page-button"
+                onClick={() => this.autoAssignAll()}
+              >
                 auto assign all
               </button>
             </div>

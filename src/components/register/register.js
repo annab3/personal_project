@@ -68,12 +68,13 @@ class Register extends Component {
                 this.setState({ password: e.target.value });
               }}
             />
-            <label>Picture</label>
-            {this.props.client_picture != "" ? (
-              <img src={this.props.client_picture} alt="client" />
-            ) : null}
-            <FileUpload />
-
+          </form>
+          <label>Picture</label>
+          {this.props.client_picture !== "" ? (
+            <img src={this.props.client_picture} alt="client" />
+          ) : null}
+          <FileUpload />
+          <form>
             <label>First Name</label>
             <input
               required
@@ -139,7 +140,12 @@ class Register extends Component {
                 this.setState({ email: e.target.value });
               }}
             />
-            <button onClick={() => this.clickHandler()}>Submit</button>
+            <button
+              className="login_page-button"
+              onClick={() => this.clickHandler()}
+            >
+              Submit
+            </button>
           </form>
         </div>
       </div>

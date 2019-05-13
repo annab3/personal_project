@@ -17,7 +17,7 @@ class ClientProfile extends Component {
     this.setState({ edit_client: {}, edit: false });
   }
   clickHandlerSubmitUserEdit() {
-    if (this.props.client_picture != "") {
+    if (this.props.client_picture !== "") {
       let edit_client = {
         ...this.state.edit_client,
         client_picture: this.props.pet_picture
@@ -74,6 +74,7 @@ class ClientProfile extends Component {
               <h5>State: {this.props.client.state}</h5>
               <h5>Zipcode: {this.props.client.zip}</h5>
               <button
+                className="login_page-button"
                 onClick={() =>
                   this.setState({ edit: true, edit_client: this.props.client })
                 }
@@ -197,10 +198,16 @@ class ClientProfile extends Component {
                 />
               </h5>
               <div>
-                <button onClick={() => this.clickHandlerCancelUserEdit()}>
+                <button
+                  className="login_page-button"
+                  onClick={() => this.clickHandlerCancelUserEdit()}
+                >
                   cancel
                 </button>
-                <button onClick={() => this.clickHandlerSubmitUserEdit()}>
+                <button
+                  className="login_page-button"
+                  onClick={() => this.clickHandlerSubmitUserEdit()}
+                >
                   Submit
                 </button>
               </div>
@@ -304,10 +311,16 @@ class ClientProfile extends Component {
                     />
                   </h5>
                   <div>
-                    <button onClick={() => this.clickHandlerCancelPetEdit()}>
+                    <button
+                      className="login_page-button"
+                      onClick={() => this.clickHandlerCancelPetEdit()}
+                    >
                       Cancel
                     </button>
-                    <button onClick={() => this.clickHandlerSubmitPetEdit()}>
+                    <button
+                      className="login_page-button"
+                      onClick={() => this.clickHandlerSubmitPetEdit()}
+                    >
                       Submit
                     </button>
                   </div>
@@ -335,7 +348,10 @@ class ClientProfile extends Component {
                   <h5>Weight (lbs): {pet.weight}</h5>
                   <h5>Color: {pet.color}</h5>
                   <h5>Feeding: {pet.feeding}</h5>
-                  <button onClick={() => this.setState({ edit_pet: pet })}>
+                  <button
+                    className="login_page-button"
+                    onClick={() => this.setState({ edit_pet: pet })}
+                  >
                     Edit
                   </button>
                 </div>
@@ -344,7 +360,7 @@ class ClientProfile extends Component {
           })}
           {/* map function over array of pets */}
           <Link to="/portal/add_dog">
-            <button>Add Pet</button>
+            <button className="login_page-button">Add Pet</button>
           </Link>
         </div>
       </div>

@@ -21,18 +21,6 @@ export function getAllPending() {
     payload: axios.get("/api/admin/pending")
   };
 }
-export function getAllConfirmed() {
-  return {
-    type: GET_ALL_CONFIRMED,
-    payload: axios.get("/api/admin/confirmed")
-  };
-}
-export function getAllHistory() {
-  return {
-    type: GET_ALL_HISTORY,
-    payload: axios.get("/api/admin/histroy")
-  };
-}
 export function getOccupied(start, end) {
   return {
     type: GET_OCCUPIED,
@@ -59,16 +47,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         allPending: action.payload.data
       };
-    case `${GET_ALL_CONFIRMED}_FULFILLED`:
-      return {
-        ...state,
-        allConfirmed: action.payload.data
-      };
-    case `${GET_ALL_HISTORY}_FULFILLED`:
-      return {
-        ...state,
-        allHistory: action.payload.data
-      };
+
     case `${GET_OCCUPIED}_FULFILLED`:
       return {
         ...state,
