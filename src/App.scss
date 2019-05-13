@@ -165,7 +165,16 @@ td {
   height: 50px;
   text-align: center;
 }
-
+.make_reservation_container {
+  @extend %flex-box-center;
+  min-height: 50vh;
+  input {
+    margin: 10px;
+  }
+  select {
+    margin: 10px;
+  }
+}
 .main {
   background: $p2;
   min-height: 100vh;

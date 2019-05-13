@@ -16,6 +16,7 @@ export default function Home() {
         alt="a group of dogs ouside sitting aroundn a bench"
         src="https://s3.us-east-2.amazonaws.com/dev-dogs/bucketFolder/IMG_0080.jpeg"
       />
+      <h3>Testimonials</h3>
     </div>
   );
 }
