@@ -47,6 +47,7 @@ app.use(
   })
 );
 app.use(getSession);
+app.use(express.static(`${__dirname}/../build`));
 
 app.get("/api/user", getUser);
 app.post("/api/login", login);
