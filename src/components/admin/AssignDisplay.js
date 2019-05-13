@@ -13,7 +13,6 @@ class AssignDisplay extends Component {
     await this.props.getOccupied(this.props.start, this.props.end);
     this.createDisplay();
   }
-
   createDisplay() {
     let display = [];
     let start = new Date(this.props.start);
