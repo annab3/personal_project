@@ -1,11 +1,6 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-// const AWS = require("aws-sdk");
-// const fs = require("fs");
-// const fileType = require("file-type");
-// const bluebird = require("bluebird");
-// const multiparty = require("multiparty");
 const massive = require("massive");
 const session = require("express-session");
 const { PORT, SESSION_SECRET, CONNECTION_STRING } = process.env;
@@ -30,8 +25,6 @@ const {
 } = require("./resControllers");
 const {
   getAllPending,
-  getAllConfirmed,
-  getAllHistory,
   getOccupied,
   addConfirmed,
   deleteFromAllPending
@@ -70,8 +63,6 @@ app.post("/api/pending", addPending);
 app.put("/api/user", editUser);
 app.put("/api/pets", editPets);
 app.get("/api/admin/pending", getAllPending);
-app.get("/api/admin/confirmed", getAllConfirmed);
-app.get("/api/admin/history", getAllHistory);
 app.post("/api/admin/occupied", getOccupied);
 app.post("/test-upload", uploadFiles);
 app.post("/api/admin/confirmed", addConfirmed);

@@ -47,14 +47,14 @@ class AssignDisplay extends Component {
         }
         innerDisplay.push(name);
       }
-      innerDisplay.unshift(`Kennel: ${i}`);
+      innerDisplay.unshift(i);
       display.push(innerDisplay);
     }
     this.setState({ display });
   }
   render() {
     return (
-      <div>
+      <div className="assign_table">
         {this.state.display.map((row, index) => (
           <div key={index} className="row">
             {row.map((box, index) => {

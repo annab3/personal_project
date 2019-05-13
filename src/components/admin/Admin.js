@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { logout } from "../../ducks/authReducer";
 import { Link } from "react-router-dom";
+// import DayPickerInput from "react-day-picker/DayPickerInput";
+import { logout } from "../../ducks/authReducer";
 import {
   getAllPending,
   getOccupied,
@@ -15,38 +16,35 @@ class Admin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      assign: "",
-      kennels: [],
-      kennel: ""
+      start: "",
+      end: "",
+      update: true
     };
-    this.clickCancelHandler = this.clickCancelHandler.bind(this);
+
     this.autoAssignKennel = this.autoAssignKennel.bind(this);
   }
   componentDidMount() {
     this.props.getAllPending();
+    let newend = new Date(new Date().getTime() + 604800000);
+    let starttheyear = new Date().getFullYear();
+    let startthemonth = new Date().getMonth() + 1;
+    let startthetoday = new Date().getDate();
+    let endtheyear = newend.getFullYear();
+    let endthemonth = newend.getMonth() + 1;
+    let endthetoday = newend.getDate();
+    let start = starttheyear + "/" + startthemonth + "/" + startthetoday;
+    let end = endtheyear + "/" + endthemonth + "/" + endthetoday;
+
+    this.setState({ start, end });
   }
-  async clickAssignHandler(start_date, end_date, index) {
-    let kennels = await this.openKennels(start_date, end_date);
-    this.setState({ assign: index, kennels });
-  }
+
   async autoAssignKennel(res) {
     let kennels = await this.openKennels(res.start_date, res.end_date);
     let confirmed = { ...res, kennel: kennels[0] };
     await this.props.moveToConfirmed(confirmed);
     this.props.deleteFromAllPending(confirmed.pending_id);
   }
-  async assignkennel(res) {
-    let kennel = +this.state.kennel;
-    let open = this.state.kennels.includes(kennel);
-    if (open) {
-      let confirmed = { ...res, kennel: kennel };
-      await this.props.moveToConfirmed(confirmed);
-      this.props.deleteFromAllPending(confirmed.pending_id);
-      this.setState({ assign: "", kennels: [], kennel: "" });
-    } else {
-      alert("Kennel All Ready Taken");
-    }
-  }
+
   autoAssignAll() {
     for (let i = this.props.pending.length - 1; i >= 0; i--) {
       this.autoAssignKennel(this.props.pending[i]);
@@ -87,9 +85,7 @@ class Admin extends Component {
     }
     return kennels;
   }
-  clickCancelHandler() {
-    this.setState({ assign: "" });
-  }
+
   displayDate(date) {
     let newDate = new Date(date).toString();
 
@@ -102,119 +98,80 @@ class Admin extends Component {
 
   render() {
     return (
-      <div>
-        <ul className="portal_nav">
-          <Link to="/">
-            <button onClick={() => this.props.logout()}>Logout</button>
-          </Link>
-        </ul>
-        <div className="admin_container">
-          <h2>Pending Reservations</h2>
-          {/* table of pending reservations */}
-          {this.props.pending[0] && this.state.assign === "" ? (
-            <div className="container">
-              <div>
-                <table>
-                  <tbody>
-                    <tr>
-                      <th>Start Date</th>
-                      <th>End Date</th>
-                      <th>Pet Name</th>
-                      <th>Client Name</th>
-                      <th>Cancel</th>
-                      <th>Availability</th>
-                    </tr>
-                    {this.props.pending.map((row, index) => {
-                      return (
-                        <tr key={index}>
-                          <td>{this.displayDate(row.start_date)}</td>
-                          <td>{this.displayDate(row.end_date)}</td>
-                          <td>{row.name}</td>
-                          <td>{`${row.first_name} ${row.last_name}`}</td>
-                          <td>
-                            <button
-                              onClick={() => {
-                                this.props.deletePending(row.pending_id);
-                              }}
-                            >
-                              X
-                            </button>
-                          </td>
-                          <td>
-                            <button
-                              onClick={() =>
-                                this.clickAssignHandler(
-                                  row.start_date,
-                                  row.end_date,
-                                  index
-                                )
-                              }
-                            >
-                              view kennels
-                            </button>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-              <button
-                className="login_page-button"
-                onClick={() => this.autoAssignAll()}
-              >
-                auto assign all
-              </button>
-            </div>
-          ) : !this.props.pending[0] && this.state.assign === "" ? (
-            <h5>No Reservations to Display</h5>
-          ) : (
+      <div className="admin_container">
+        <h2>Pending Reservations</h2>
+        {/* table of pending reservations */}
+        {!this.props.pending[0] ? (
+          <h5>No Reservations to Display</h5>
+        ) : (
+          <div className="admin_container">
             <div>
-              <h5>
-                {`${this.displayDate(
-                  this.props.pending[this.state.assign].start_date
-                )} - 
-        
-          ${this.displayDate(this.props.pending[this.state.assign].end_date)} ${
-                  this.props.pending[this.state.assign].name
-                } ${this.props.pending[this.state.assign].first_name} ${
-                  this.props.pending[this.state.assign].last_name
-                }`}
-
-                <select
-                  onChange={e => this.setState({ kennel: e.target.value })}
-                >
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                  <option>7</option>
-                  <option>8</option>
-                  <option>9</option>
-                  <option>10</option>
-                  <option>11</option>
-                  <option>12</option>
-                </select>
-                <button
-                  onClick={() =>
-                    this.assignkennel(this.props.pending[this.state.assign])
-                  }
-                >
-                  Confirm
-                </button>
-              </h5>
-
-              <button onClick={() => this.clickCancelHandler()}>Cancel</button>
-              <div>
-                <AssignDisplay
-                  start={this.props.pending[this.state.assign].start_date}
-                  end={this.props.pending[this.state.assign].end_date}
-                  clickCancelHandler={this.clickCancelHandler}
-                />
-              </div>
+              <table className="reservation_table">
+                <tbody>
+                  <tr>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Pet Name</th>
+                    <th>Client Name</th>
+                    <th>Cancel</th>
+                    <th>Availability</th>
+                  </tr>
+                  {this.props.pending.map((row, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{this.displayDate(row.start_date)}</td>
+                        <td>{this.displayDate(row.end_date)}</td>
+                        <td>{row.name}</td>
+                        <td>{`${row.first_name} ${row.last_name}`}</td>
+                        <td>
+                          <h3
+                            onClick={() => {
+                              this.props.deletePending(row.pending_id);
+                            }}
+                          >
+                            X
+                          </h3>
+                        </td>
+                        <td>
+                          <Link className="link" to={`/admin/assign/${index}`}>
+                            <h4>view kennels</h4>
+                          </Link>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
+            <button
+              className="login_page-button"
+              onClick={() => this.autoAssignAll()}
+            >
+              auto assign all
+            </button>
+          </div>
+        )}
+        <div>
+          {/* Search
+          <DayPickerInput onDayChange={day => this.setState({ start: day })} />
+          <DayPickerInput onDayChange={day => this.setState({ end: day })} />
+          <button
+            onClick={() => {
+              this.props.getOccupied(this.state.start, this.state.end);
+        
+            }}
+          >
+            Submit
+          </button> */}
+          <h3>
+            {this.displayDate(this.state.start)} -
+            {this.displayDate(this.state.end)}
+          </h3>
+          {this.state.start === "" ||
+          (this.state.end === "" && this.state.update === true) ? (
+            <div>Loading</div>
+          ) : (
+            <AssignDisplay start={this.state.start} end={this.state.end} />
           )}
         </div>
       </div>

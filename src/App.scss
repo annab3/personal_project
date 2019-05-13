@@ -16,6 +16,17 @@
 .link {
   text-decoration: none;
 }
+.assign_table {
+  max-width: 90vw;
+  overflow: scroll;
+}
+.confirm-button {
+  background: $p1;
+  color: white;
+  border-radius: 30%;
+  height: 30px;
+  font-weight: bold;
+}
 .login_page-button {
   border-radius: 30%;
   background: $p1;
@@ -184,6 +195,7 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: scroll;
 }
 .empty {
   border: 2px solid black;
@@ -196,6 +208,7 @@ li {
 }
 .row {
   display: flex;
+  overflow: scroll;
 }
 .navbar {
   background: $p1;

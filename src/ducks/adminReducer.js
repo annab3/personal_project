@@ -9,8 +9,6 @@ const initialState = {
 };
 
 const GET_ALL_PENDING = "GET_ALL_PENDING";
-const GET_ALL_CONFIRMED = "GET_ALL_CONFIRMED";
-const GET_ALL_HISTORY = "GET_ALL_HISTORY";
 const GET_OCCUPIED = "GET_OCCUPIED";
 const MOVE_TO_CONFIRMED = "MOVE_TO_CONFIRMED";
 const DELETE_FROM_ALL_PENDING = "DELETE_FROM_ALL_PENDING";
@@ -21,6 +19,7 @@ export function getAllPending() {
     payload: axios.get("/api/admin/pending")
   };
 }
+
 export function getOccupied(start, end) {
   return {
     type: GET_OCCUPIED,
@@ -47,7 +46,6 @@ export default function reducer(state = initialState, action) {
         ...state,
         allPending: action.payload.data
       };
-
     case `${GET_OCCUPIED}_FULFILLED`:
       return {
         ...state,
