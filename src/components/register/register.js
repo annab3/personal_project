@@ -54,7 +54,7 @@ class Register extends Component {
     if (this.props.client.username) {
       return (
         <div>
-          <Redirect to="/admin" />
+          <Redirect to="/portal" />
         </div>
       );
     } else {
