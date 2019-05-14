@@ -1,4 +1,6 @@
-@import "./variables.scss";
+$p1: rgb(5, 194, 252);
+$p2: rgb(191, 236, 250);
+
 @mixin fadein($property) {
   -webkit-animation: $property;
   -moz-animation: $property;
