@@ -1,490 +1,490 @@
-// @import "./variables.scss";
-// @mixin fadein($property) {
-//   -webkit-animation: $property;
-//   -moz-animation: $property;
-//   -ms-animation: $property;
-//   -o-animation: $property;
-//   animation: $property;
-// }
+@import "./variables.scss";
+@mixin fadein($property) {
+  -webkit-animation: $property;
+  -moz-animation: $property;
+  -ms-animation: $property;
+  -o-animation: $property;
+  animation: $property;
+}
 
-// %flex-box-center {
-//   display: flex;
-//   justify-content: space-around;
-//   align-items: center;
-// }
+%flex-box-center {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
 
-// .link {
-//   text-decoration: none;
-// }
-// .assign_table {
-//   max-width: 90vw;
-//   overflow: scroll;
-// }
-// .confirm-button {
-//   background: $p1;
-//   color: white;
-//   border-radius: 30%;
-//   height: 30px;
-//   font-weight: bold;
-// }
-// .login_page-button {
-//   border-radius: 30%;
-//   background: $p1;
-//   color: white;
-//   height: 50px;
-//   font-weight: bold;
-//   font-size: 20pt;
-//   margin: 20px;
-// }
-// .login_input {
-//   height: 20px;
-//   width: 150px;
-//   margin: 10px;
-// }
-// .login_page {
-//   @extend %flex-box-center;
-//   min-height: 100vh;
-//   min-width: 100vw;
-// }
-// .login_register_contianer {
-//   @extend %flex-box-center;
-//   height: 400px;
-//   width: 700px;
-// }
-// .login_container {
-//   height: 400px;
-//   width: 350px;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   border: 1px solid $p1;
-// }
-// .register_container {
-//   height: 700px;
-//   width: 600px;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   border: 1px solid $p1;
-//   input {
-//     margin: 5px;
-//   }
-// }
+.link {
+  text-decoration: none;
+}
+.assign_table {
+  max-width: 90vw;
+  overflow: scroll;
+}
+.confirm-button {
+  background: $p1;
+  color: white;
+  border-radius: 30%;
+  height: 30px;
+  font-weight: bold;
+}
+.login_page-button {
+  border-radius: 30%;
+  background: $p1;
+  color: white;
+  height: 50px;
+  font-weight: bold;
+  font-size: 20pt;
+  margin: 20px;
+}
+.login_input {
+  height: 20px;
+  width: 150px;
+  margin: 10px;
+}
+.login_page {
+  @extend %flex-box-center;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+.login_register_contianer {
+  @extend %flex-box-center;
+  height: 400px;
+  width: 700px;
+}
+.login_container {
+  height: 400px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $p1;
+}
+.register_container {
+  height: 700px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $p1;
+  input {
+    margin: 5px;
+  }
+}
 
-// .profile_container {
-//   @extend %flex-box-center;
-//   width: 100vw;
-//   flex-direction: column;
-//   background-image: url("https://static.bhphotovideo.com/explora/sites/default/files/grass_0.jpg");
-//   background-repeat: no-repeat;
-//   background-size: contain;
-//   padding: 20px;
-//   background-color: #497403;
-// }
-// .pet_profile_container {
-//   @extend %flex-box-center;
-//   width: 500px;
-//   min-height: 60vh;
-//   border: 1px solid black;
-//   flex-direction: column;
-//   background: $p2;
-//   padding-top: 20px;
-//   padding-bottom: 20px;
-// }
-// .client_profile_container {
-//   @extend %flex-box-center;
-//   width: 500px;
-//   min-height: 60vh;
-//   border: 1px solid black;
-//   padding-top: 10px;
-//   background: $p2;
-// }
+.profile_container {
+  @extend %flex-box-center;
+  width: 100vw;
+  flex-direction: column;
+  background-image: url("https://static.bhphotovideo.com/explora/sites/default/files/grass_0.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 20px;
+  background-color: #497403;
+}
+.pet_profile_container {
+  @extend %flex-box-center;
+  width: 500px;
+  min-height: 60vh;
+  border: 1px solid black;
+  flex-direction: column;
+  background: $p2;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.client_profile_container {
+  @extend %flex-box-center;
+  width: 500px;
+  min-height: 60vh;
+  border: 1px solid black;
+  padding-top: 10px;
+  background: $p2;
+}
 
-// .portal_nav {
-//   @extend %flex-box-center;
-//   margin: 0px;
-//   padding: 10px 0px 10px 0px;
-//   background: $p1;
-// }
-// .reservation_container {
-//   @extend %flex-box-center;
-//   flex-direction: column;
-// }
-// .history_container {
-//   @extend %flex-box-center;
-//   flex-direction: column;
-// }
-// .register_page {
-//   @extend %flex-box-center;
-//   justify-content: center;
-//   min-height: 80vh;
-// }
+.portal_nav {
+  @extend %flex-box-center;
+  margin: 0px;
+  padding: 10px 0px 10px 0px;
+  background: $p1;
+}
+.reservation_container {
+  @extend %flex-box-center;
+  flex-direction: column;
+}
+.history_container {
+  @extend %flex-box-center;
+  flex-direction: column;
+}
+.register_page {
+  @extend %flex-box-center;
+  justify-content: center;
+  min-height: 80vh;
+}
 
-// .boarding_price_container {
-//   width: 100vw;
-//   height: 300px;
-//   background: $p2;
-//   @extend %flex-box-center;
-//   flex-direction: column;
-//   padding-top: 40px;
-//   padding-bottom: 40px;
-// }
-// .parallax {
-//   background-image: url("https://s3.us-east-2.amazonaws.com/dev-dogs/bucketFolder/52598923_1004386023085929_4662875886792474624_n.jpg");
-//   height: 300px;
-//   background-attachment: fixed;
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-// }
-// .parallax2 {
-//   background-image: url("https://s3.us-east-2.amazonaws.com/dev-dogs/bucketFolder/58114950_1038247773033087_3720518525421355008_n.jpg");
-//   height: 300px;
-//   background-attachment: fixed;
-//   background-position: center;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-// }
-// .services_container {
-//   min-height: 100vh;
-// }
-// table {
-//   tr:nth-child(odd) {
-//     background-color: $p1;
-//   }
-//   tr:nth-child(even) {
-//     background-color: white;
-//   }
-//   border: 3px solid black;
-//   width: 600px;
-// }
+.boarding_price_container {
+  width: 100vw;
+  height: 300px;
+  background: $p2;
+  @extend %flex-box-center;
+  flex-direction: column;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.parallax {
+  background-image: url("https://s3.us-east-2.amazonaws.com/dev-dogs/bucketFolder/52598923_1004386023085929_4662875886792474624_n.jpg");
+  height: 300px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.parallax2 {
+  background-image: url("https://s3.us-east-2.amazonaws.com/dev-dogs/bucketFolder/58114950_1038247773033087_3720518525421355008_n.jpg");
+  height: 300px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.services_container {
+  min-height: 100vh;
+}
+table {
+  tr:nth-child(odd) {
+    background-color: $p1;
+  }
+  tr:nth-child(even) {
+    background-color: white;
+  }
+  border: 3px solid black;
+  width: 600px;
+}
 
-// td {
-//   height: 50px;
-//   text-align: center;
-// }
-// .make_reservation_container {
-//   @extend %flex-box-center;
-//   min-height: 50vh;
-//   input {
-//     margin: 10px;
-//   }
-//   select {
-//     margin: 10px;
-//   }
-// }
-// .main {
-//   background: $p2;
-//   min-height: 100vh;
-//   padding-top: 100px;
-// }
-// video {
-//   width: 100vw;
-// }
+td {
+  height: 50px;
+  text-align: center;
+}
+.make_reservation_container {
+  @extend %flex-box-center;
+  min-height: 50vh;
+  input {
+    margin: 10px;
+  }
+  select {
+    margin: 10px;
+  }
+}
+.main {
+  background: $p2;
+  min-height: 100vh;
+  padding-top: 100px;
+}
+video {
+  width: 100vw;
+}
 
-// form {
-//   @extend %flex-box-center;
-//   flex-direction: column;
-// }
-// li {
-//   list-style-type: none;
-// }
-// .logout_button {
-//   color: white;
-//   font-weight: bold;
-//   font-size: 14pt;
-// }
-// .full {
-//   border: 2px solid black;
-//   background-color: $p1;
-//   height: 50px;
-//   width: 100px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   overflow: scroll;
-// }
-// .empty {
-//   border: 2px solid black;
-//   background-color: white;
-//   height: 50px;
-//   width: 100px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
-// .row {
-//   display: flex;
-//   overflow: scroll;
-// }
-// .navbar {
-//   background: $p1;
-//   display: flex;
-//   justify-content: space-between;
-//   width: 100vw;
-//   height: 100px;
-//   position: fixed;
-//   top: 0;
-//   z-index: 2;
-// }
-// .navbar_links {
-//   padding-top: 20px;
-//   @extend %flex-box-center;
-//   width: 40vw;
-//   margin-right: 20px;
-// }
+form {
+  @extend %flex-box-center;
+  flex-direction: column;
+}
+li {
+  list-style-type: none;
+}
+.logout_button {
+  color: white;
+  font-weight: bold;
+  font-size: 14pt;
+}
+.full {
+  border: 2px solid black;
+  background-color: $p1;
+  height: 50px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: scroll;
+}
+.empty {
+  border: 2px solid black;
+  background-color: white;
+  height: 50px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.row {
+  display: flex;
+  overflow: scroll;
+}
+.navbar {
+  background: $p1;
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  height: 100px;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+}
+.navbar_links {
+  padding-top: 20px;
+  @extend %flex-box-center;
+  width: 40vw;
+  margin-right: 20px;
+}
 
-// .navbar_link {
-//   color: white;
-//   font-weight: bold;
-//   font-size: 14pt;
-// }
+.navbar_link {
+  color: white;
+  font-weight: bold;
+  font-size: 14pt;
+}
 
-// .logo {
-//   height: 80px;
-//   padding-top: 10px;
-// }
-// .profile_img {
-//   max-height: 200px;
-//   max-width: 300px;
-//   border-radius: 50%;
-// }
-// .admin_container {
-//   @extend %flex-box-center;
-//   justify-content: center;
-//   flex-direction: column;
-// }
-// h2 {
-//   margin-top: 0px;
-// }
-// .contact_page {
-//   display: flex;
-//   justify-content: space-evenly;
-//   align-items: center;
-//   min-height: 100vh;
-//   flex-direction: column;
-//   padding-top: 100px;
-// }
-// .contact_card {
-//   height: 200px;
-//   width: 500px;
-//   margin: 100px;
-//   background: white;
-//   padding: 30px;
-//   display: flex;
-//   box-shadow: 5px 10px rgb(68, 68, 68);
-//   h3 {
-//     margin: 0px;
-//     color: $p1;
-//   }
-//   h2 {
-//     color: $p1;
-//   }
-//   img {
-//     height: 200px;
-//     margin-right: 50px;
-//   }
-// }
-// #contact_card_logo {
-//   height: 40px;
-// }
-// .home_container {
-//   @extend %flex-box-center;
-//   flex-direction: column;
-//   border: 1px solid black;
-//   top: 100px;
-//   width: 100vw;
-// }
-// .text_container {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   // border: 1px solid red;
-//   width: 100cw;
-//   min-height: 300px;
-//   p {
-//     font-weight: bold;
-//     padding: 20px;
-//     width: 400px;
-//   }
-// }
-// .frenchie_img {
-//   margin-top: 30px;
-//   border-radius: 50%;
-//   max-height: 200px;
-// }
-// .welcome_message {
-//   @extend %flex-box-center;
-//   flex-direction: column;
-//   min-height: 70vh;
-// }
-// .menu_container {
-//   @extend %flex-box-center;
-// }
-// .hamburger_menu {
-//   display: none;
-//   height: 80px;
-// }
-// .menu_links {
-//   @extend %flex-box-center;
-//   flex-direction: column;
-// }
-// @media (max-width: 900px) {
-//   .welcome_message {
-//     h1 {
-//       font-size: 24px;
-//     }
-//   }
-//   .reservation_table {
-//     max-width: 90vw;
-//   }
-//   .logout_button {
-//     display: none;
-//   }
-//   .client_profile_container {
-//     max-width: 90vw;
-//   }
-//   .pet_profile_container {
-//     max-width: 90vw;
-//   }
-//   .profile_container {
-//     padding: 0;
-//   }
-//   .frenchie_img {
-//     max-width: 200px;
-//     height: auto;
-//   }
-//   .text_container {
-//     flex-direction: column;
-//     align-items: center;
-//   }
-//   .phone_home_image {
-//     width: 100vw;
-//   }
-//   video {
-//     display: none;
-//   }
-//   .navbar_links {
-//     display: none;
-//   }
-//   .hamburger_menu {
-//     display: inline;
-//   }
-//   .home_overlay_logo {
-//     display: none;
-//   }
-//   .menu_open {
-//     position: absolute;
-//     right: 0px;
-//     top: 100px;
-//     display: flex;
-//     overflow: hidden;
-//     color: white;
-//     height: 200px;
-//     width: 200px;
-//     background: $p1;
-//     animation-name: open;
-//     animation-duration: 1s;
-//   }
-//   .menu_close {
-//     position: absolute;
-//     right: 0px;
-//     top: 100px;
-//     display: flex;
-//     overflow: hidden;
-//     color: white;
-//     height: 0px;
-//     width: 200px;
-//     background: $p1;
-//     animation-name: close;
-//     animation-duration: 1s;
-//   }
-//   .menu_ {
-//     display: none;
-//     overflow: hidden;
-//   }
-// }
-// @media (max-width: 600px) {
-//   .login_register_contianer {
-//     flex-direction: column;
-//   }
-//   .login_container {
-//     border: none;
-//   }
-//   .register_container {
-//     border: none;
-//   }
-//   .text_container {
-//     display: flex;
-//     width: 100vw;
-//     min-height: 30vh;
-//     p {
-//       font-weight: bold;
-//       padding: 20px;
-//       width: 200px;
-//     }
-//   }
-//   .contact_card {
-//     height: auto;
-//     max-width: 80vw;
-//     display: flex;
-//     flex-direction: column;
-//     img {
-//       height: 200px;
-//       margin-right: 0px;
-//     }
-//   }
-//   .map {
-//     max-width: 90vw;
-//   }
-// }
-// @keyframes close {
-//   from {
-//     height: 200px;
-//   }
-//   to {
-//     height: 0px;
-//   }
-// }
-// @keyframes open {
-//   from {
-//     height: 0px;
-//   }
-//   to {
-//     height: 200px;
-//   }
-// }
-// .home_overlay_logo {
-//   position: absolute;
-//   z-index: 1;
-//   top: 270px;
-//   @include fadein(overlay 6s);
-// }
-// @keyframes overlay {
-//   from {
-//     opacity: 0;
-//   }
-//   to {
-//     opacity: 1;
-//   }
-// }
+.logo {
+  height: 80px;
+  padding-top: 10px;
+}
+.profile_img {
+  max-height: 200px;
+  max-width: 300px;
+  border-radius: 50%;
+}
+.admin_container {
+  @extend %flex-box-center;
+  justify-content: center;
+  flex-direction: column;
+}
+h2 {
+  margin-top: 0px;
+}
+.contact_page {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  padding-top: 100px;
+}
+.contact_card {
+  height: 200px;
+  width: 500px;
+  margin: 100px;
+  background: white;
+  padding: 30px;
+  display: flex;
+  box-shadow: 5px 10px rgb(68, 68, 68);
+  h3 {
+    margin: 0px;
+    color: $p1;
+  }
+  h2 {
+    color: $p1;
+  }
+  img {
+    height: 200px;
+    margin-right: 50px;
+  }
+}
+#contact_card_logo {
+  height: 40px;
+}
+.home_container {
+  @extend %flex-box-center;
+  flex-direction: column;
+  border: 1px solid black;
+  top: 100px;
+  width: 100vw;
+}
+.text_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // border: 1px solid red;
+  width: 100cw;
+  min-height: 300px;
+  p {
+    font-weight: bold;
+    padding: 20px;
+    width: 400px;
+  }
+}
+.frenchie_img {
+  margin-top: 30px;
+  border-radius: 50%;
+  max-height: 200px;
+}
+.welcome_message {
+  @extend %flex-box-center;
+  flex-direction: column;
+  min-height: 70vh;
+}
+.menu_container {
+  @extend %flex-box-center;
+}
+.hamburger_menu {
+  display: none;
+  height: 80px;
+}
+.menu_links {
+  @extend %flex-box-center;
+  flex-direction: column;
+}
+@media (max-width: 900px) {
+  .welcome_message {
+    h1 {
+      font-size: 24px;
+    }
+  }
+  .reservation_table {
+    max-width: 90vw;
+  }
+  .logout_button {
+    display: none;
+  }
+  .client_profile_container {
+    max-width: 90vw;
+  }
+  .pet_profile_container {
+    max-width: 90vw;
+  }
+  .profile_container {
+    padding: 0;
+  }
+  .frenchie_img {
+    max-width: 200px;
+    height: auto;
+  }
+  .text_container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .phone_home_image {
+    width: 100vw;
+  }
+  video {
+    display: none;
+  }
+  .navbar_links {
+    display: none;
+  }
+  .hamburger_menu {
+    display: inline;
+  }
+  .home_overlay_logo {
+    display: none;
+  }
+  .menu_open {
+    position: absolute;
+    right: 0px;
+    top: 100px;
+    display: flex;
+    overflow: hidden;
+    color: white;
+    height: 200px;
+    width: 200px;
+    background: $p1;
+    animation-name: open;
+    animation-duration: 1s;
+  }
+  .menu_close {
+    position: absolute;
+    right: 0px;
+    top: 100px;
+    display: flex;
+    overflow: hidden;
+    color: white;
+    height: 0px;
+    width: 200px;
+    background: $p1;
+    animation-name: close;
+    animation-duration: 1s;
+  }
+  .menu_ {
+    display: none;
+    overflow: hidden;
+  }
+}
+@media (max-width: 600px) {
+  .login_register_contianer {
+    flex-direction: column;
+  }
+  .login_container {
+    border: none;
+  }
+  .register_container {
+    border: none;
+  }
+  .text_container {
+    display: flex;
+    width: 100vw;
+    min-height: 30vh;
+    p {
+      font-weight: bold;
+      padding: 20px;
+      width: 200px;
+    }
+  }
+  .contact_card {
+    height: auto;
+    max-width: 80vw;
+    display: flex;
+    flex-direction: column;
+    img {
+      height: 200px;
+      margin-right: 0px;
+    }
+  }
+  .map {
+    max-width: 90vw;
+  }
+}
+@keyframes close {
+  from {
+    height: 200px;
+  }
+  to {
+    height: 0px;
+  }
+}
+@keyframes open {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 200px;
+  }
+}
+.home_overlay_logo {
+  position: absolute;
+  z-index: 1;
+  top: 270px;
+  @include fadein(overlay 6s);
+}
+@keyframes overlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
-// @media (min-width: 901px) {
-//   .menu_close {
-//     display: none;
-//     overflow: hidden;
-//   }
-//   .menu_open {
-//     display: none;
-//     overflow: hidden;
-//   }
-//   .menu_ {
-//     display: none;
-//     overflow: hidden;
-//   }
-//   .phone_home_image {
-//     display: none;
-//   }
-// }
+@media (min-width: 901px) {
+  .menu_close {
+    display: none;
+    overflow: hidden;
+  }
+  .menu_open {
+    display: none;
+    overflow: hidden;
+  }
+  .menu_ {
+    display: none;
+    overflow: hidden;
+  }
+  .phone_home_image {
+    display: none;
+  }
+}
