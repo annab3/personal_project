@@ -44,8 +44,8 @@ const register = async (req, res) => {
     password,
     first_name,
     last_name,
-    primary_phone,
-    secondary_phone,
+    primary_number,
+    secondary_number,
     address,
     city,
     state,
@@ -65,8 +65,8 @@ const register = async (req, res) => {
         hash,
         first_name,
         last_name,
-        primary_phone,
-        secondary_phone,
+        primary_number,
+        secondary_number,
         address,
         city,
         state,
@@ -74,7 +74,6 @@ const register = async (req, res) => {
         email,
         client_picture
       ]);
-    console.log(client[0]);
     req.session.user = { client_id: client[0].client_id };
     res.status(200).json(client[0]);
   }

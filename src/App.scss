@@ -19,8 +19,9 @@ $p2: rgb(191, 236, 250);
   text-decoration: none;
 }
 .assign_table {
+  width: auto;
   max-width: 90vw;
-  overflow: scroll;
+  overflow: auto;
 }
 .confirm-button {
   background: $p1;
@@ -45,7 +46,7 @@ $p2: rgb(191, 236, 250);
 }
 .login_page {
   @extend %flex-box-center;
-  min-height: 100vh;
+  min-height: 70vh;
   min-width: 100vw;
 }
 .login_register_contianer {
@@ -77,7 +78,7 @@ $p2: rgb(191, 236, 250);
 
 .profile_container {
   @extend %flex-box-center;
-  width: 100vw;
+  max-width: 100vw;
   flex-direction: column;
   background-image: url("https://static.bhphotovideo.com/explora/sites/default/files/grass_0.jpg");
   background-repeat: no-repeat;
@@ -102,6 +103,7 @@ $p2: rgb(191, 236, 250);
   border: 1px solid black;
   padding-top: 10px;
   background: $p2;
+  margin-top: 10px;
 }
 
 .portal_nav {
@@ -201,18 +203,17 @@ li {
 .full {
   border: 2px solid black;
   background-color: $p1;
-  height: 50px;
-  width: 100px;
+  min-height: 50px;
+  min-width: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: scroll;
 }
 .empty {
   border: 2px solid black;
   background-color: white;
-  height: 50px;
-  width: 100px;
+  min-height: 50px;
+  min-width: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -234,7 +235,7 @@ li {
 .navbar_links {
   padding-top: 20px;
   @extend %flex-box-center;
-  width: 40vw;
+  width: 42vw;
   margin-right: 20px;
 }
 
@@ -267,7 +268,6 @@ h2 {
   align-items: center;
   min-height: 100vh;
   flex-direction: column;
-  padding-top: 100px;
 }
 .contact_card {
   height: 200px;
@@ -334,6 +334,11 @@ h2 {
   flex-direction: column;
 }
 @media (max-width: 900px) {
+  .full {
+    p {
+      display: none;
+    }
+  }
   .welcome_message {
     h1 {
       font-size: 24px;
@@ -347,6 +352,7 @@ h2 {
   }
   .client_profile_container {
     max-width: 90vw;
+    margin-top: 10px;
   }
   .pet_profile_container {
     max-width: 90vw;
@@ -409,6 +415,13 @@ h2 {
   }
 }
 @media (max-width: 600px) {
+  .login_page {
+    max-height: 100vh;
+    padding-top: 50px;
+  }
+  .contact_card {
+    margin-top: 20px;
+  }
   .login_register_contianer {
     flex-direction: column;
   }

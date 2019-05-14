@@ -38,8 +38,8 @@ class RegisterDog extends Component {
   }
   render() {
     return (
-      <div>
-        <div>
+      <div className="register_page">
+        <div className="register_container">
           <h4>Pet Name</h4>
           <input
             required

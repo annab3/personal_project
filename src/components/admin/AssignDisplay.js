@@ -53,27 +53,25 @@ class AssignDisplay extends Component {
   }
   render() {
     return (
-      <div className="assign_table">
-        {this.state.display.map((row, index) => (
-          <div key={index} className="row">
-            {row.map((box, index) => {
-              if (box === "") {
-                return (
-                  <div key={index} className="empty">
-                    {box}
-                  </div>
-                );
-              } else {
-                return (
-                  <div key={index} className="full">
-                    {box}
-                  </div>
-                );
-              }
-            })}
-          </div>
-        ))}
-      </div>
+      <table className="assign_table">
+        <tbody>
+          {this.state.display.map((row, index) => (
+            <tr key={index} className="row">
+              {row.map((box, index) => {
+                if (box === "") {
+                  return <td key={index} className="empty" />;
+                } else {
+                  return (
+                    <td key={index} className="full">
+                      <p>{box}</p>
+                    </td>
+                  );
+                }
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     );
   }
 }
