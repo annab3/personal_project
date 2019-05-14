@@ -28,7 +28,8 @@ const addConfirmed = async (req, res) => {
       +req.body.kennel
     ])
     .catch(error => console.log(error));
-  email(req.session.user.email);
+  //   let email
+  // email(req.session.user.email);
   res.status(200).json(confirmed);
 };
 const deleteFromAllPending = async (req, res) => {

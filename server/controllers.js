@@ -21,8 +21,7 @@ const login = async (req, res) => {
       res.status(403).json("Wrong username or password");
     } else {
       req.session.user = {
-        client_id: client[0].client_id,
-        email: client[0].email
+        client_id: client[0].client_id
       };
       res.status(200).json(client[0]);
     }
@@ -66,15 +65,16 @@ const register = async (req, res) => {
         hash,
         first_name,
         last_name,
-        +primary_phone,
-        +secondary_phone,
+        primary_phone,
+        secondary_phone,
         address,
         city,
         state,
-        +zip,
+        zip,
         email,
         client_picture
       ]);
+    console.log(client[0]);
     req.session.user = { client_id: client[0].client_id };
     res.status(200).json(client[0]);
   }
@@ -129,8 +129,8 @@ const editUser = async (req, res) => {
     .edit_user([
       first_name,
       last_name,
-      +primary_number,
-      +secondary_number,
+      primary_number,
+      secondary_number,
       address,
       city,
       state,

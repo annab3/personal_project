@@ -32,7 +32,7 @@ export function getPets() {
 export function register(newclient) {
   return {
     type: REGISTER,
-    payload: axios.post("/api/register", { newclient })
+    payload: axios.post("/api/register", newclient)
   };
 }
 
