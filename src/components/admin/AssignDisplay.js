@@ -25,6 +25,7 @@ class AssignDisplay extends Component {
         j++
       ) {
         let name = "";
+        let id;
         for (let k = 0; k < this.props.occupied.length; k++) {
           if (
             this.props.occupied[k].kennel === i &&
@@ -42,36 +43,39 @@ class AssignDisplay extends Component {
               j
           ) {
             name = this.props.occupied[k].name;
+            id = this.props.occupied[k].id;
           }
         }
-        innerDisplay.push(name);
+        innerDisplay.push({ name, id });
       }
-      innerDisplay.unshift(i);
+      innerDisplay.unshift({ name: i });
       display.push(innerDisplay);
     }
     this.setState({ display });
   }
   render() {
     return (
-      <table className="assign_table">
-        <tbody>
-          {this.state.display.map((row, index) => (
-            <tr key={index} className="row">
-              {row.map((box, index) => {
-                if (box === "") {
-                  return <td key={index} className="empty" />;
-                } else {
-                  return (
-                    <td key={index} className="full">
-                      <p>{box}</p>
-                    </td>
-                  );
-                }
-              })}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="assign_table">
+        <table>
+          <tbody>
+            {this.state.display.map((row, index) => (
+              <tr key={index} className="row">
+                {row.map((box, index) => {
+                  if (box.name === "") {
+                    return <td key={index} className="empty" />;
+                  } else {
+                    return (
+                      <td key={index} className="full">
+                        <p>{box.name}</p>
+                      </td>
+                    );
+                  }
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }

@@ -5,7 +5,8 @@ const initialState = {
   allConfirmed: [],
   allHistory: [],
   occupied: [],
-  kennelDisplay: []
+  kennelDisplay: [],
+  loading: false
 };
 
 const GET_ALL_PENDING = "GET_ALL_PENDING";
@@ -46,10 +47,16 @@ export default function reducer(state = initialState, action) {
         ...state,
         allPending: action.payload.data
       };
+    case `${GET_OCCUPIED}_PENDING`:
+      return {
+        ...state,
+        loading: true
+      };
     case `${GET_OCCUPIED}_FULFILLED`:
       return {
         ...state,
-        occupied: action.payload.data
+        occupied: action.payload.data,
+        loading: false
       };
     case `${MOVE_TO_CONFIRMED}_FULFILLED`:
       return {

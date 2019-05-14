@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
-function email(email) {
+function sendEmail(email, start, end) {
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     service: "gmail",
@@ -14,15 +14,22 @@ function email(email) {
   // send mail with defined transport object
   let info = {
     // from: "Dev Dogs", // sender address
-    to: email, // list of receivers
+    to: email[0].email, // list of receivers
     subject: "Reservation Confirmation", // Subject line
-    text: "Hello world?", // plain text body
-    html: "<b>Hello world?</b>" // html body
+    text: `Your reservation for ${start}-${end} has been confirmed! Thank you for choosing Dev Dogs!`, // plain text body
+    html: `<b>Your reservation for ${start}-${end} has been confirmed! <br>Thank you for choosing Dev Dogs!</b>` // html body
   };
   transporter.sendMail(info);
-  console.log(info);
 }
+function displayDate(date) {
+  let newDate = new Date(date).toString();
 
+  let endDate = newDate
+    .split(" ")
+    .splice(0, 4)
+    .join(" ");
+  return endDate;
+}
 const getAllPending = async (req, res) => {
   let date = new Date().toISOString().split("T")[0];
   let pending = await req.app
@@ -51,7 +58,9 @@ const addConfirmed = async (req, res) => {
     ])
     .catch(error => console.log(error));
   let email = await res.app.get("db").get_email(+req.body.dog_id);
-  email(email);
+  let start = displayDate(req.body.start_date);
+  let end = displayDate(req.body.end_date);
+  sendEmail(email, start, end);
   res.status(200).json(confirmed);
 };
 const deleteFromAllPending = async (req, res) => {

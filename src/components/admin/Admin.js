@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-// import DayPickerInput from "react-day-picker/DayPickerInput";
+import DayPickerInput from "react-day-picker/DayPickerInput";
 import { logout } from "../../ducks/authReducer";
 import {
   getAllPending,
@@ -18,24 +18,17 @@ class Admin extends Component {
     this.state = {
       start: "",
       end: "",
-      update: true
+      prepStart: "",
+      prepEnd: ""
     };
 
     this.autoAssignKennel = this.autoAssignKennel.bind(this);
   }
-  componentDidMount() {
+  async componentDidMount() {
     this.props.getAllPending();
-    let newend = new Date(new Date().getTime() + 604800000);
-    let starttheyear = new Date().getFullYear();
-    let startthemonth = new Date().getMonth() + 1;
-    let startthetoday = new Date().getDate();
-    let endtheyear = newend.getFullYear();
-    let endthemonth = newend.getMonth() + 1;
-    let endthetoday = newend.getDate();
-    let start = starttheyear + "/" + startthemonth + "/" + startthetoday;
-    let end = endtheyear + "/" + endthemonth + "/" + endthetoday;
-
-    this.setState({ start, end });
+    let start = new Date();
+    let end = new Date(new Date().getTime() + 604800000);
+    await this.setState({ start: start, end: end });
   }
 
   async autoAssignKennel(res) {
@@ -95,6 +88,12 @@ class Admin extends Component {
       .join(" ");
     return endDate;
   }
+  async clickHandler() {
+    await this.setState({ start: "", end: "" });
+    let start = this.state.prepStart;
+    let end = this.state.prepEnd;
+    this.setState({ start, end, prepStart: "", prepEnd: "" });
+  }
 
   render() {
     return (
@@ -152,23 +151,19 @@ class Admin extends Component {
           </div>
         )}
         <div>
-          {/* Search
-          <DayPickerInput onDayChange={day => this.setState({ start: day })} />
-          <DayPickerInput onDayChange={day => this.setState({ end: day })} />
-          <button
-            onClick={() => {
-              this.props.getOccupied(this.state.start, this.state.end);
-        
-            }}
-          >
-            Submit
-          </button> */}
+          Search
+          <DayPickerInput
+            onDayChange={day => this.setState({ prepStart: day })}
+          />
+          <DayPickerInput
+            onDayChange={day => this.setState({ prepEnd: day })}
+          />
+          <button onClick={() => this.clickHandler()}>Submit</button>
           <h3>
             {this.displayDate(this.state.start)} -
             {this.displayDate(this.state.end)}
           </h3>
-          {this.state.start === "" ||
-          (this.state.end === "" && this.state.update === true) ? (
+          {this.state.start === "" || this.state.end === "" ? (
             <div>Loading</div>
           ) : (
             <AssignDisplay start={this.state.start} end={this.state.end} />

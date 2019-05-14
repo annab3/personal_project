@@ -44,7 +44,10 @@ class MakeRes extends Component {
           {/* need to add drop down calender! */}
           <label>Select Start Date</label>
           <DayPickerInput
-            onDayChange={day => this.setState({ start_date: day })}
+            onDayChange={day => {
+              console.log(day);
+              this.setState({ start_date: day });
+            }}
           />
           <label>Select End Date</label>
           <DayPickerInput
