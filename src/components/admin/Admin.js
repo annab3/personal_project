@@ -151,7 +151,7 @@ class Admin extends Component {
           </div>
         )}
         <div>
-          Search
+          <h3>Search Dates</h3>
           <DayPickerInput
             onDayChange={day => this.setState({ prepStart: day })}
           />

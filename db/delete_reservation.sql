@@ -1,0 +1,1 @@
+DELETE FROM confirmed_reservation WHERE id = $1;

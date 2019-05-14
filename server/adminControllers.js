@@ -70,10 +70,26 @@ const deleteFromAllPending = async (req, res) => {
     .catch(error => console.log(error));
   res.status(200).json(pending);
 };
+const getRes = async (req, res) => {
+  let reservation = await res.app
+    .get("db")
+    .get_reservation(+req.params.id)
+    .catch(error => console.log(error));
+  res.status(200).json(reservation[0]);
+};
+const deleteRes = async (req, res) => {
+  await res.app
+    .get("db")
+    .delete_reservation(+req.params.id)
+    .catch(error => console.log(error));
+  res.sendStatus(200);
+};
 
 module.exports = {
   getAllPending,
   getOccupied,
   addConfirmed,
-  deleteFromAllPending
+  deleteFromAllPending,
+  getRes,
+  deleteRes
 };

@@ -27,7 +27,9 @@ const {
   getAllPending,
   getOccupied,
   addConfirmed,
-  deleteFromAllPending
+  deleteFromAllPending,
+  getRes,
+  deleteRes
 } = require("./adminControllers");
 const { getSession } = require("./middleware");
 
@@ -68,5 +70,7 @@ app.post("/api/admin/occupied", getOccupied);
 app.post("/test-upload", uploadFiles);
 app.post("/api/admin/confirmed", addConfirmed);
 app.delete("/api/admin/pending/:id", deleteFromAllPending);
+app.get("/api/admin/res/:id", getRes);
+app.delete("/api/admin/res/:id", deleteRes);
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

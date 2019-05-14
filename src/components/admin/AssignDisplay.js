@@ -1,20 +1,33 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { getOccupied } from "../../ducks/adminReducer";
 
 class AssignDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      display: []
+      display: [],
+      dates: []
     };
+    this.displayDate = this.displayDate.bind(this);
   }
   async componentDidMount() {
     await this.props.getOccupied(this.props.start, this.props.end);
     this.createDisplay();
   }
-  createDisplay() {
+  displayDate(date) {
+    let newDate = new Date(date).toString();
+
+    let endDate = newDate
+      .split(" ")
+      .splice(1, 2)
+      .join(" ");
+    return endDate;
+  }
+  async createDisplay() {
     let display = [];
+    let dates = [];
     let start = new Date(this.props.start);
     let end = new Date(this.props.end);
     for (let i = 1; i <= 12; i++) {
@@ -24,6 +37,10 @@ class AssignDisplay extends Component {
         j <= end.getTime() / 1000 / 60 / 60 / 24;
         j++
       ) {
+        if (i === 1) {
+          let day = await this.displayDate(new Date(j * 1000 * 60 * 60 * 24));
+          dates.push({ name: day });
+        }
         let name = "";
         let id;
         for (let k = 0; k < this.props.occupied.length; k++) {
@@ -51,6 +68,8 @@ class AssignDisplay extends Component {
       innerDisplay.unshift({ name: i });
       display.push(innerDisplay);
     }
+    dates.unshift("");
+    display.unshift(dates);
     this.setState({ display });
   }
   render() {
@@ -63,6 +82,14 @@ class AssignDisplay extends Component {
                 {row.map((box, index) => {
                   if (box.name === "") {
                     return <td key={index} className="empty" />;
+                  } else if (box.id) {
+                    return (
+                      <Link className="link" to={`/admin/edit/${box.id}`}>
+                        <td key={`${index} ${box.id}`} className="full">
+                          <p>{box.name}</p>
+                        </td>
+                      </Link>
+                    );
                   } else {
                     return (
                       <td key={index} className="full">
