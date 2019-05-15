@@ -49,7 +49,6 @@ app.use(
   })
 );
 app.use(getSession);
-app.use(express.static(`${__dirname}/../build`));
 
 app.get("/api/user", getUser);
 app.post("/api/login", login);
@@ -72,5 +71,7 @@ app.post("/api/admin/confirmed", addConfirmed);
 app.delete("/api/admin/pending/:id", deleteFromAllPending);
 app.get("/api/admin/res/:id", getRes);
 app.delete("/api/admin/res/:id", deleteRes);
+
+app.use(express.static(`${__dirname}/../build`));
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
