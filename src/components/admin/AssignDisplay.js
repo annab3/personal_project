@@ -75,7 +75,8 @@ class AssignDisplay extends Component {
   render() {
     return (
       <div className="assign_table">
-        <table>
+        <div>
+          {/* <table>
           <tbody>
             {this.state.display.map((row, index) => (
               <tr key={index} className="row">
@@ -101,7 +102,31 @@ class AssignDisplay extends Component {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> */}
+          {this.state.display.map((row, index) => (
+            <div key={index} className="row">
+              {row.map((box, index) => {
+                if (box.name === "") {
+                  return <div key={index} className="empty" />;
+                } else if (box.id) {
+                  return (
+                    <Link className="link" to={`/admin/edit/${box.id}`}>
+                      <div key={`${index} ${box.id}`} className="full">
+                        <p>{box.name}</p>
+                      </div>
+                    </Link>
+                  );
+                } else {
+                  return (
+                    <div key={index} className="full">
+                      <p>{box.name}</p>
+                    </div>
+                  );
+                }
+              })}
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
