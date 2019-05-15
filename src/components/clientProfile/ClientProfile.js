@@ -49,7 +49,7 @@ class ClientProfile extends Component {
       <div className="profile_container">
         <div className="client_profile_container">
           {!this.state.edit ? (
-            <div>
+            <div className="align_content">
               {this.props.client.client_picture ? (
                 <img
                   className="profile_img"
@@ -63,16 +63,18 @@ class ClientProfile extends Component {
                   alt="nothing provided"
                 />
               )}
-              <h5>
-                Name: {this.props.client.first_name}{" "}
-                {this.props.client.last_name}
-              </h5>
-              <h5>Primary Phone#: {this.props.client.primary_number}</h5>
-              <h5>Secondary Phone#: {this.props.client.secondary_number}</h5>
-              <h5>Adress: {this.props.client.address}</h5>
-              <h5>City: {this.props.client.city}</h5>
-              <h5>State: {this.props.client.state}</h5>
-              <h5>Zipcode: {this.props.client.zip}</h5>
+              <div>
+                <h5>
+                  Name: {this.props.client.first_name}{" "}
+                  {this.props.client.last_name}
+                </h5>
+                <h5>Primary Phone#: {this.props.client.primary_number}</h5>
+                <h5>Secondary Phone#: {this.props.client.secondary_number}</h5>
+                <h5>Adress: {this.props.client.address}</h5>
+                <h5>City: {this.props.client.city}</h5>
+                <h5>State: {this.props.client.state}</h5>
+                <h5>Zipcode: {this.props.client.zip}</h5>
+              </div>
               <button
                 className="login_page-button"
                 onClick={() =>
@@ -328,7 +330,7 @@ class ClientProfile extends Component {
               );
             } else {
               return (
-                <div key={index}>
+                <div key={index} className="align_content">
                   {pet.picture ? (
                     <img
                       className="profile_img"
@@ -342,12 +344,14 @@ class ClientProfile extends Component {
                       alt="nothing provided"
                     />
                   )}
-                  <h5>Name: {pet.name}</h5>
-                  <h5>Breed: {pet.breed}</h5>
-                  <h5>Birthday: {pet.birthday}</h5>
-                  <h5>Weight (lbs): {pet.weight}</h5>
-                  <h5>Color: {pet.color}</h5>
-                  <h5>Feeding: {pet.feeding}</h5>
+                  <div>
+                    <h5>Name: {pet.name}</h5>
+                    <h5>Breed: {pet.breed}</h5>
+                    <h5>Birthday: {pet.birthday}</h5>
+                    <h5>Weight (lbs): {pet.weight}</h5>
+                    <h5>Color: {pet.color}</h5>
+                    <h5>Feeding: {pet.feeding}</h5>
+                  </div>
                   <button
                     className="login_page-button"
                     onClick={() => this.setState({ edit_pet: pet })}

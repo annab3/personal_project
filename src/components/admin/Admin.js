@@ -32,10 +32,13 @@ class Admin extends Component {
   }
 
   async autoAssignKennel(res) {
+    let { start, end } = this.state;
+    this.setState({ start: "", end: "" });
     let kennels = await this.openKennels(res.start_date, res.end_date);
     let confirmed = { ...res, kennel: kennels[0] };
     await this.props.moveToConfirmed(confirmed);
     this.props.deleteFromAllPending(confirmed.pending_id);
+    this.setState({ start, end });
   }
 
   autoAssignAll() {
@@ -97,77 +100,82 @@ class Admin extends Component {
 
   render() {
     return (
-      <div className="admin_container">
-        <h2>Pending Reservations</h2>
-        {/* table of pending reservations */}
-        {!this.props.pending[0] ? (
-          <h5>No Reservations to Display</h5>
-        ) : (
-          <div className="admin_container">
-            <div>
-              <table className="reservation_table">
-                <tbody>
-                  <tr>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Pet Name</th>
-                    <th>Client Name</th>
-                    <th>Cancel</th>
-                    <th>Availability</th>
-                  </tr>
-                  {this.props.pending.map((row, index) => {
-                    return (
-                      <tr key={index}>
-                        <td>{this.displayDate(row.start_date)}</td>
-                        <td>{this.displayDate(row.end_date)}</td>
-                        <td>{row.name}</td>
-                        <td>{`${row.first_name} ${row.last_name}`}</td>
-                        <td>
-                          <h3
-                            onClick={() => {
-                              this.props.deletePending(row.pending_id);
-                            }}
-                          >
-                            X
-                          </h3>
-                        </td>
-                        <td>
-                          <Link className="link" to={`/admin/assign/${index}`}>
-                            <h4>view kennels</h4>
-                          </Link>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-            <button
-              className="login_page-button"
-              onClick={() => this.autoAssignAll()}
-            >
-              auto assign all
-            </button>
-          </div>
-        )}
-        <div>
-          <h3>Search Dates</h3>
-          <DayPickerInput
-            onDayChange={day => this.setState({ prepStart: day })}
-          />
-          <DayPickerInput
-            onDayChange={day => this.setState({ prepEnd: day })}
-          />
-          <button onClick={() => this.clickHandler()}>Submit</button>
-          <h3>
-            {this.displayDate(this.state.start)} -
-            {this.displayDate(this.state.end)}
-          </h3>
-          {this.state.start === "" || this.state.end === "" ? (
-            <div>Loading</div>
+      <div className="reservation_container">
+        <div className="reservation_container2">
+          <h2>Pending Reservations</h2>
+          {/* table of pending reservations */}
+          {!this.props.pending[0] ? (
+            <h5>No Reservations to Display</h5>
           ) : (
-            <AssignDisplay start={this.state.start} end={this.state.end} />
+            <div className="admin_container">
+              <div>
+                <table className="reservation_table">
+                  <tbody>
+                    <tr>
+                      <th>Start Date</th>
+                      <th>End Date</th>
+                      <th>Pet Name</th>
+                      <th>Client Name</th>
+                      <th>Cancel</th>
+                      <th>Availability</th>
+                    </tr>
+                    {this.props.pending.map((row, index) => {
+                      return (
+                        <tr key={index}>
+                          <td>{this.displayDate(row.start_date)}</td>
+                          <td>{this.displayDate(row.end_date)}</td>
+                          <td>{row.name}</td>
+                          <td>{`${row.first_name} ${row.last_name}`}</td>
+                          <td>
+                            <h3
+                              onClick={() => {
+                                this.props.deletePending(row.pending_id);
+                              }}
+                            >
+                              X
+                            </h3>
+                          </td>
+                          <td>
+                            <Link
+                              className="link"
+                              to={`/admin/assign/${index}`}
+                            >
+                              <h4>view kennels</h4>
+                            </Link>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              <button
+                className="login_page-button"
+                onClick={() => this.autoAssignAll()}
+              >
+                auto assign all
+              </button>
+            </div>
           )}
+          <div>
+            <h3>Search Dates</h3>
+            <DayPickerInput
+              onDayChange={day => this.setState({ prepStart: day })}
+            />
+            <DayPickerInput
+              onDayChange={day => this.setState({ prepEnd: day })}
+            />
+            <button onClick={() => this.clickHandler()}>Submit</button>
+            <h3>
+              {this.displayDate(this.state.start)} -
+              {this.displayDate(this.state.end)}
+            </h3>
+            {this.state.start === "" || this.state.end === "" ? (
+              <div>Loading</div>
+            ) : (
+              <AssignDisplay start={this.state.start} end={this.state.end} />
+            )}
+          </div>
         </div>
       </div>
     );

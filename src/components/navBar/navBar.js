@@ -28,7 +28,7 @@ class Navbar extends Component {
           <img
             className="logo"
             alt="logo"
-            src="https://cdn.pixabay.com/photo/2016/05/27/18/26/pointer-1420402_1280.png"
+            src="https://www.pinclipart.com/picdir/big/75-757125_white-dog-silhouette-white-dog-silhouette-transparent-clipart.png"
           />
         </div>
         <div className="menu_container">
@@ -36,7 +36,7 @@ class Navbar extends Component {
             className="hamburger_menu"
             onClick={() => this.clickHandler()}
             alt="menu"
-            src="http://chittagongit.com/images/menu-icon-white-png/menu-icon-white-png-27.jpg"
+            src="https://s3.us-east-2.amazonaws.com/dev-dogs/bucketFolder/menu-icon-white-png-27.png"
           />
 
           <ul className="navbar_links">
@@ -58,41 +58,29 @@ class Navbar extends Component {
         <div className={`menu_${this.state.status}`}>
           <ul className="menu_links">
             <Link className="link" to="/">
-              <li
-                onClick={() => this.clickLinkHandler()}
-                className="navbar_link"
-              >
+              <li onClick={() => this.clickLinkHandler()} className="menu_link">
                 Home
               </li>
             </Link>
             <Link className="link" to="/services">
-              <li
-                onClick={() => this.clickLinkHandler()}
-                className="navbar_link"
-              >
+              <li onClick={() => this.clickLinkHandler()} className="menu_link">
                 Services
               </li>
             </Link>
             <Link className="link" to="/contact">
-              <li
-                onClick={() => this.clickLinkHandler()}
-                className="navbar_link"
-              >
+              <li onClick={() => this.clickLinkHandler()} className="menu_link">
                 Contact Us
               </li>
             </Link>
             <Link className="link" to="/portal">
-              <li
-                onClick={() => this.clickLinkHandler()}
-                className="navbar_link"
-              >
+              <li onClick={() => this.clickLinkHandler()} className="menu_link">
                 Client Portal
               </li>
             </Link>
             {this.props.client.username ? (
               <Link className="link" to="/">
                 <li
-                  className="navbar_link"
+                  className="menu_link"
                   onClick={() => {
                     this.clickLinkHandler();
                     this.props.logout();

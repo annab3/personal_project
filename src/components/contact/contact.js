@@ -10,6 +10,7 @@ export default function Contact() {
         />
         <div>
           <img
+            className="ontact_card_logo"
             alt="logo"
             id="contact_card_logo"
             src="https://s3.us-east-2.amazonaws.com/dev-dogs/bucketFolder/dm_white_logo.png"
@@ -22,6 +23,15 @@ export default function Contact() {
           <h3>Dallas, TX 75201</h3>
         </div>
       </div>
+      <div className="text_container3">
+        <p>
+          Mckizine has been a leader in animal hospitality for over 10 years
+          with a background in animal behavior. Specializing in furry friends of
+          the canine variety, no one is better suited to run things here at Dev
+          Dogs. Contact Mckinzie with any questions, concerns or to schedule a
+          tour.
+        </p>
+      </div>
       <iframe
         title="map"
         className="map"
@@ -31,6 +41,13 @@ export default function Contact() {
         frameBorder="0"
         allowFullScreen
       />
+      <div className="text_container3">
+        <p>
+          Located in the heart of downtown Dallas, Dev Dogs is the place for
+          your pet to be! Visit our newly renovated, state-of-the art facilities
+          and see what we are barking about!
+        </p>
+      </div>
     </div>
   );
 }

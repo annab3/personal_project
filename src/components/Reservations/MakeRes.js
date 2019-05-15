@@ -29,34 +29,36 @@ class MakeRes extends Component {
 
   render() {
     return (
-      <div className="make_reservation_container">
-        <form>
-          <select onChange={e => this.setState({ pet: e.target.value })}>
-            <option>Select Pet</option>
-            {this.props.pets.map((pet, index) => {
-              return (
-                <option key={index} value={pet.dog_id}>
-                  {pet.name}
-                </option>
-              );
-            })}
-          </select>
-          {/* need to add drop down calender! */}
-          <label>Select Start Date</label>
-          <DayPickerInput
-            onDayChange={day => {
-              console.log(day);
-              this.setState({ start_date: day });
-            }}
-          />
-          <label>Select End Date</label>
-          <DayPickerInput
-            onDayChange={day => this.setState({ end_date: day })}
-          />
-          <Link to="/portal/reservations">
-            <button onClick={() => this.clickHandlerSubmit()}>Submit</button>
-          </Link>
-        </form>
+      <div className="history_container">
+        <div className="reservation_container2">
+          <form>
+            <select onChange={e => this.setState({ pet: e.target.value })}>
+              <option>Select Pet</option>
+              {this.props.pets.map((pet, index) => {
+                return (
+                  <option key={index} value={pet.dog_id}>
+                    {pet.name}
+                  </option>
+                );
+              })}
+            </select>
+            {/* need to add drop down calender! */}
+            <label>Select Start Date</label>
+            <DayPickerInput
+              onDayChange={day => {
+                console.log(day);
+                this.setState({ start_date: day });
+              }}
+            />
+            <label>Select End Date</label>
+            <DayPickerInput
+              onDayChange={day => this.setState({ end_date: day })}
+            />
+            <Link to="/portal/reservations">
+              <button onClick={() => this.clickHandlerSubmit()}>Submit</button>
+            </Link>
+          </form>
+        </div>
       </div>
     );
   }

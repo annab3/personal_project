@@ -54,6 +54,24 @@ export default function Services() {
           </tbody>
         </table>
       </div>
+      <div className="text_container">
+        <img
+          className="frenchie_img"
+          alt="kuranda bed"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRAiRXVHL-8YMDPullkCmZAqZ8Oe2MB6_F0oQKASVEASX2Ljw93w"
+        />
+
+        <p>
+          Kuranda Dog Beds: All of our furry friends that sleepover at Dev Dogs
+          will have doggie daycare included at no extra charge and will sleep on
+          the orthopedic friendly Kuranda Dog Beds.
+        </p>
+        <img
+          className="frenchie_img"
+          alt="kuranda bed"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJl5FNWwT64Lg5k6koSIJAn9sS07G4bUlx96ZKxQvnUQkfMZrV5Q"
+        />
+      </div>
     </div>
   );
 }

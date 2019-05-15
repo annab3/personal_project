@@ -85,54 +85,56 @@ class Assign extends Component {
       return <Redirect to="/admin" />;
     } else {
       return (
-        <div className="admin_container">
-          <h3>
-            {`${this.displayDate(
-              this.props.pending[this.props.match.params.index].start_date
-            )} - 
+        <div className="history_container">
+          <div className="reservation_container2">
+            <h3>
+              {`${this.displayDate(
+                this.props.pending[this.props.match.params.index].start_date
+              )} - 
         
           ${this.displayDate(
             this.props.pending[this.props.match.params.index].end_date
           )} ${this.props.pending[this.props.match.params.index].name} ${
-              this.props.pending[this.props.match.params.index].first_name
-            } ${this.props.pending[this.props.match.params.index].last_name}`}
+                this.props.pending[this.props.match.params.index].first_name
+              } ${this.props.pending[this.props.match.params.index].last_name}`}
 
-            <select onChange={e => this.setState({ kennel: e.target.value })}>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
-              <option>9</option>
-              <option>10</option>
-              <option>11</option>
-              <option>12</option>
-            </select>
-            <button
-              className="confirm-button"
-              onClick={() =>
-                this.assignkennel(
-                  this.props.pending[this.props.match.params.index]
-                )
-              }
-            >
-              Confirm
-            </button>
-          </h3>
+              <select onChange={e => this.setState({ kennel: e.target.value })}>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+              </select>
+              <button
+                className="confirm-button"
+                onClick={() =>
+                  this.assignkennel(
+                    this.props.pending[this.props.match.params.index]
+                  )
+                }
+              >
+                Confirm
+              </button>
+            </h3>
 
-          <Link to="/admin">
-            <button className="login_page-button">Cancel</button>
-          </Link>
-          <div>
-            <AssignDisplay
-              start={
-                this.props.pending[this.props.match.params.index].start_date
-              }
-              end={this.props.pending[this.props.match.params.index].end_date}
-            />
+            <Link to="/admin">
+              <button className="login_page-button">Cancel</button>
+            </Link>
+            <div>
+              <AssignDisplay
+                start={
+                  this.props.pending[this.props.match.params.index].start_date
+                }
+                end={this.props.pending[this.props.match.params.index].end_date}
+              />
+            </div>
           </div>
         </div>
       );

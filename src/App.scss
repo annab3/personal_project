@@ -14,10 +14,31 @@ $p2: rgb(191, 236, 250);
   justify-content: space-around;
   align-items: center;
 }
-
+.testimonial {
+  width: 100vw;
+  background: white;
+  color: $p1;
+  // margin: 20px 0px;
+}
+.testimonial1 {
+  width: 100vw;
+  background: $p1;
+  color: #000000;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  // margin: 20px 0px;
+}
+.testimonial2 {
+  width: 100vw;
+  background: $p1;
+  color: white;
+  // margin: 20px 0px;
+}
 .link {
   text-decoration: none;
 }
+
 .assign_table {
   max-width: 90vw;
   overflow: scroll;
@@ -28,6 +49,7 @@ $p2: rgb(191, 236, 250);
   border-radius: 30%;
   height: 30px;
   font-weight: bold;
+  cursor: pointer;
 }
 .login_page-button {
   border-radius: 30%;
@@ -37,6 +59,7 @@ $p2: rgb(191, 236, 250);
   font-weight: bold;
   font-size: 20pt;
   margin: 20px;
+  cursor: pointer;
 }
 .login_input {
   height: 20px;
@@ -74,16 +97,18 @@ $p2: rgb(191, 236, 250);
     margin: 5px;
   }
 }
-
+video {
+  width: 100vw;
+}
 .profile_container {
   @extend %flex-box-center;
   max-width: 100vw;
   flex-direction: column;
-  background-image: url("https://static.bhphotovideo.com/explora/sites/default/files/grass_0.jpg");
+  background-image: url("https://i.pinimg.com/originals/b5/5a/a5/b55aa5a5a99b18a56ccd1348844721cd.jpg");
   background-repeat: no-repeat;
   background-size: contain;
   padding: 20px;
-  background-color: #497403;
+  background-color: white;
 }
 .pet_profile_container {
   @extend %flex-box-center;
@@ -109,22 +134,40 @@ $p2: rgb(191, 236, 250);
   @extend %flex-box-center;
   margin: 0px;
   padding: 10px 0px 10px 0px;
-  background: $p1;
+  background: white;
 }
 .reservation_container {
+  @extend %flex-box-center;
+  flex-direction: column;
+  background-image: url("https://i.pinimg.com/originals/b5/5a/a5/b55aa5a5a99b18a56ccd1348844721cd.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  background-color: white;
+}
+.reservation_container2 {
   @extend %flex-box-center;
   flex-direction: column;
 }
 .history_container {
   @extend %flex-box-center;
+  justify-content: flex-start;
   flex-direction: column;
+  background-image: url("https://i.pinimg.com/originals/b5/5a/a5/b55aa5a5a99b18a56ccd1348844721cd.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  background-color: white;
 }
 .register_page {
   @extend %flex-box-center;
   justify-content: center;
   min-height: 80vh;
 }
-
+.align_content {
+  @extend %flex-box-center;
+  flex-direction: column;
+}
 .boarding_price_container {
   width: 100vw;
   height: 300px;
@@ -163,7 +206,21 @@ table {
   border: 3px solid black;
   width: auto;
 }
-
+.text_container3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // background: white;
+  width: 100vw;
+  min-height: 200px;
+  p {
+    font-weight: bold;
+    width: 500px;
+    text-shadow: 2px 2px 2px rgba(255, 255, 255, 0),
+      3px 3px 17px rgba(170, 170, 170, 0.97);
+  }
+}
 td {
   height: 50px;
   text-align: center;
@@ -183,9 +240,6 @@ td {
   min-height: 100vh;
   padding-top: 100px;
 }
-video {
-  width: 100vw;
-}
 
 form {
   @extend %flex-box-center;
@@ -195,9 +249,10 @@ li {
   list-style-type: none;
 }
 .logout_button {
-  color: white;
+  color: $p1;
   font-weight: bold;
   font-size: 14pt;
+  cursor: pointer;
 }
 .full {
   border: 2px solid black;
@@ -245,6 +300,11 @@ li {
   font-weight: bold;
   font-size: 14pt;
 }
+.portal_navbar_link {
+  color: $p1;
+  font-weight: bold;
+  font-size: 14pt;
+}
 
 .logo {
   height: 80px;
@@ -273,7 +333,7 @@ h2 {
 .contact_card {
   height: 200px;
   width: 500px;
-  margin: 100px;
+  margin: 30px;
   background: white;
   padding: 30px;
   display: flex;
@@ -305,7 +365,22 @@ h2 {
   align-items: center;
   justify-content: center;
   // border: 1px solid red;
-  width: 100cw;
+  width: 100vw;
+  min-height: 300px;
+  p {
+    font-weight: bold;
+    padding: 20px;
+    width: 400px;
+    text-shadow: 2px 2px 2px rgba(255, 255, 255, 0),
+      3px 3px 17px rgba(170, 170, 170, 0.97);
+  }
+}
+.text_container2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // border: 1px solid red;
+  width: 100vw;
   min-height: 300px;
   p {
     font-weight: bold;
@@ -333,6 +408,7 @@ h2 {
 .menu_links {
   @extend %flex-box-center;
   flex-direction: column;
+  padding: 0;
 }
 @media (max-width: 900px) {
   .welcome_message {
@@ -346,6 +422,7 @@ h2 {
   .logout_button {
     display: none;
   }
+
   .client_profile_container {
     max-width: 90vw;
     margin-top: 10px;
@@ -384,24 +461,33 @@ h2 {
     right: 0px;
     top: 100px;
     display: flex;
+    justify-content: center;
     overflow: hidden;
-    color: white;
+    color: $p1;
     height: 200px;
-    width: 200px;
-    background: $p1;
+    width: 100vw;
+    background: white;
     animation-name: open;
     animation-duration: 1s;
   }
+  .menu_link {
+    color: $p1;
+    font-weight: bold;
+    font-size: 14pt;
+    border-bottom: 2px solid $p1;
+  }
+
   .menu_close {
     position: absolute;
     right: 0px;
     top: 100px;
     display: flex;
+    justify-content: center;
     overflow: hidden;
-    color: white;
+    color: $p1;
     height: 0px;
-    width: 200px;
-    background: $p1;
+    width: 100vw;
+    background: white;
     animation-name: close;
     animation-duration: 1s;
   }
@@ -411,6 +497,9 @@ h2 {
   }
 }
 @media (max-width: 600px) {
+  .ontact_card_logo {
+    padding-top: 10px;
+  }
   .login_page {
     max-height: 100vh;
     padding-top: 50px;
@@ -437,11 +526,33 @@ h2 {
       width: 200px;
     }
   }
+  .text_container3 {
+    display: flex;
+    width: 100vw;
+    min-height: 30vh;
+    p {
+      font-weight: bold;
+      padding: 20px;
+      width: 200px;
+    }
+  }
+  .text_container2 {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100vw;
+    min-height: 30vh;
+    p {
+      font-weight: bold;
+      padding: 20px;
+      width: 200px;
+    }
+  }
   .contact_card {
     height: auto;
     max-width: 80vw;
     display: flex;
     flex-direction: column;
+    align-items: center;
     img {
       height: 200px;
       margin-right: 0px;

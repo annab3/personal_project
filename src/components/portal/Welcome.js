@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 class Welcome extends Component {
   render() {
     return (
-      <div className="welcome_message">
+      <div className="history_container">
         <h1>Welcome back, {this.props.client.first_name}!</h1>
       </div>
     );

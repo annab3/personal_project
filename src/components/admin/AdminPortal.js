@@ -12,7 +12,7 @@ function AdminPortal(props) {
       <div>
         <ul className="portal_nav">
           <Link className="link" to="/">
-            <li className="navbar_link" onClick={() => props.logout()}>
+            <li className="logout_button" onClick={() => props.logout()}>
               Logout
             </li>
           </Link>

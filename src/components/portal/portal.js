@@ -19,13 +19,13 @@ class Portal extends Component {
         <div className="portal_container">
           <ul className="portal_nav">
             <Link className="link" to="/portal/profile">
-              <li className="navbar_link">Profile</li>
+              <li className="portal_navbar_link">Profile</li>
             </Link>
             <Link className="link" to="/portal/reservations">
-              <li className="navbar_link">Reservations</li>
+              <li className="portal_navbar_link">Reservations</li>
             </Link>
             <Link className="link" to="/portal/history">
-              <li className="navbar_link">History</li>
+              <li className="portal_navbar_link">History</li>
             </Link>
             <li className="logout_button" onClick={() => this.props.logout()}>
               Logout
