@@ -25,7 +25,7 @@ export default function Home() {
           <img
             className="frenchie_img"
             alt="dog"
-            src="https://www.maxpixel.net/static/photo/2x/Boxer-Dogs-Portrait-Boxer-Dog-Look-German-Boxer-2752260.jpg"
+            src="https://s3.us-east-2.amazonaws.com/dev-dogs/bucketFolder/Boxer-Dogs-Portrait-Boxer-Dog-Look-German-Boxer-2752260.jpg"
           />
           <p>
             My dogs spend a lot of time in kennels due to my work travel. This

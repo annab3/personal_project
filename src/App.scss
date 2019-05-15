@@ -185,13 +185,8 @@ video {
   background-repeat: no-repeat;
   background-size: cover;
 }
-.parallax2 {
-  background-image: url("https://s3.us-east-2.amazonaws.com/dev-dogs/bucketFolder/58114950_1038247773033087_3720518525421355008_n.jpg");
-  height: 300px;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.sudo_parallax {
+  display: none;
 }
 .services_container {
   min-height: 100vh;
@@ -422,7 +417,6 @@ h2 {
   .logout_button {
     display: none;
   }
-
   .client_profile_container {
     max-width: 90vw;
     margin-top: 10px;
@@ -476,7 +470,17 @@ h2 {
     font-size: 14pt;
     border-bottom: 2px solid $p1;
   }
-
+  .text_container2 {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100vw;
+    min-height: 30vh;
+    p {
+      font-weight: bold;
+      padding: 20px;
+      width: 200px;
+    }
+  }
   .menu_close {
     position: absolute;
     right: 0px;
@@ -497,6 +501,13 @@ h2 {
   }
 }
 @media (max-width: 600px) {
+  .parallax {
+    display: none;
+  }
+  .sudo_parallax {
+    display: inline;
+    width: 100vw;
+  }
   .ontact_card_logo {
     padding-top: 10px;
   }

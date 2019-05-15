@@ -3,7 +3,6 @@ import React from "react";
 export default function Services() {
   return (
     <div className="services_container">
-      {/* <div class="parallax" /> */}
       <div className="text_container">
         <img
           className="frenchie_img"
@@ -19,6 +18,11 @@ export default function Services() {
         </p>
       </div>
       <div className="parallax" />
+      <img
+        alt="frenchie with a tennis ball"
+        src="https://s3.us-east-2.amazonaws.com/dev-dogs/bucketFolder/52598923_1004386023085929_4662875886792474624_n.jpg"
+        className="sudo_parallax"
+      />
       <div className="boarding_price_container">
         <table className="reservation_table">
           <tbody>
