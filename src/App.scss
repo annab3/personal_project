@@ -69,8 +69,10 @@ $p2: rgb(191, 236, 250);
   margin: 10px;
 }
 .login_page {
-  @extend %flex-box-center;
-  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
   min-width: 100vw;
 }
 .login_register_contianer {
@@ -261,6 +263,13 @@ li {
   justify-content: center;
   align-items: center;
 }
+.logo_and_title {
+  display: flex;
+  align-items: center;
+}
+.title {
+  color: white;
+}
 .empty {
   border: 2px solid black;
   background-color: white;
@@ -325,6 +334,9 @@ h2 {
   align-items: center;
   min-height: 100vh;
   flex-direction: column;
+}
+.portal_container {
+  max-height: 100vh;
 }
 .contact_card {
   height: 200px;

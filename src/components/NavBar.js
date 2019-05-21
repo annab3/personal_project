@@ -24,12 +24,13 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="navbar">
-        <div>
+        <div className="logo_and_title">
           <img
             className="logo"
             alt="logo"
             src="https://www.pinclipart.com/picdir/big/75-757125_white-dog-silhouette-white-dog-silhouette-transparent-clipart.png"
           />
+          <h1 className="title">Dev Dogs</h1>
         </div>
         <div className="menu_container">
           <img

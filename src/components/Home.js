@@ -17,7 +17,7 @@ export default function Home() {
         src="https://s3.us-east-2.amazonaws.com/dev-dogs/bucketFolder/IMG_0080.jpeg"
       />
       <div className="testimonial1">
-        <h2>Testimonials</h2>
+        <h2 className="title">Testimonials</h2>
       </div>
 
       <div className="testimonial">
