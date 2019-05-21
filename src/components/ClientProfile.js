@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { editClient, editPets } from "../../ducks/authReducer";
-import FileUpload from "../fileUpload/FileUpload";
+import { editClient, editPets } from "../ducks/authReducer";
+import FileUpload from "./FileUpload";
 
 class ClientProfile extends Component {
   constructor(props) {

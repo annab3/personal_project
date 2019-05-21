@@ -25,10 +25,10 @@ export default function Contact() {
       </div>
       <div className="text_container3">
         <p>
-          Mckizine has been a leader in animal hospitality for over 10 years
+          Mykenzie has been a leader in animal hospitality for over 10 years
           with a background in animal behavior. Specializing in furry friends of
           the canine variety, no one is better suited to run things here at Dev
-          Dogs. Contact Mckinzie with any questions, concerns or to schedule a
+          Dogs. Contact Mykenzie with any questions, concerns or to schedule a
           tour.
         </p>
       </div>

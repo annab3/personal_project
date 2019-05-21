@@ -6,7 +6,7 @@ import {
   deleteConfirmed,
   getPending,
   getConfirmed
-} from "../../ducks/resReducer";
+} from "../ducks/resReducer";
 
 class Reservations extends Component {
   componentDidMount() {

@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { logout } from "../../ducks/authReducer";
-import adminRoutes from "../../adminRoutes";
+import { logout } from "../ducks/authReducer";
+import adminRoutes from "../adminRoutes";
 
 function AdminPortal(props) {
   if (!props.client.username || props.client.is_admin === false) {

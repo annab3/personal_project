@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { getOccupied } from "../../ducks/adminReducer";
+import { getOccupied } from "../ducks/adminReducer";
 
 class AssignDisplay extends Component {
   constructor(props) {

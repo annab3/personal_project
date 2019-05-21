@@ -1,11 +1,11 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import ClientProfile from "./components/clientProfile/ClientProfile";
-import Reservations from "./components/Reservations/Reservations";
-import History from "./components/history/History";
-import RegisterDog from "./components/registerDog/RegisterDog";
-import MakeRes from "./components/Reservations/MakeRes";
-import Welcome from "./components/portal/Welcome";
+import ClientProfile from "./components/ClientProfile";
+import Reservations from "./components/Reservations";
+import History from "./components/History";
+import RegisterDog from "./components/RegisterDog";
+import MakeRes from "./components/MakeRes";
+import Welcome from "./components/Welcome";
 
 export default (
   <Switch>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getHistory } from "../../ducks/resReducer";
+import { getHistory } from "../ducks/resReducer";
 
 class History extends Component {
   componentDidMount() {

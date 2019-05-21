@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { login, updatePassword, updateUsername } from "../../ducks/authReducer";
+import { login, updatePassword, updateUsername } from "../ducks/authReducer";
 
 class Login extends Component {
   render() {

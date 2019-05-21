@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Link } from "react-router-dom";
-import portalRoutes from "../../protalRoutes";
-import { getUser, getPets, logout } from "../../ducks/authReducer";
+import portalRoutes from "../protalRoutes";
+import { getUser, getPets, logout } from "../ducks/authReducer";
 
 class Portal extends Component {
   componentDidMount() {

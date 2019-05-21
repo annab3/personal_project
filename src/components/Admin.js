@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import DayPickerInput from "react-day-picker/DayPickerInput";
-import { logout } from "../../ducks/authReducer";
+import { logout } from "../ducks/authReducer";
 import {
   getAllPending,
   getOccupied,
   deleteFromAllPending,
   moveToConfirmed
-} from "../../ducks/adminReducer";
-import { deletePending } from "../../ducks/resReducer";
+} from "../ducks/adminReducer";
+import { deletePending } from "../ducks/resReducer";
 import AssignDisplay from "./AssignDisplay";
 
 class Admin extends Component {

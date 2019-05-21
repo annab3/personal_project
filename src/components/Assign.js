@@ -5,7 +5,7 @@ import {
   getOccupied,
   moveToConfirmed,
   deleteFromAllPending
-} from "../../ducks/adminReducer";
+} from "../ducks/adminReducer";
 import { Link, Redirect } from "react-router-dom";
 
 class Assign extends Component {

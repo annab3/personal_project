@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { updatePetPicture } from "../../ducks/authReducer";
+import { updatePetPicture } from "../ducks/authReducer";
 import { connect } from "react-redux";
 
 class FileUpload extends Component {

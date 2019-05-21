@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { register } from "../../ducks/authReducer";
-import FileUpload from "../fileUpload/FileUpload";
+import { register } from "../ducks/authReducer";
+import FileUpload from "./FileUpload";
 
 class Register extends Component {
   constructor(props) {

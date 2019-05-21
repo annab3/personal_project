@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addPending } from "../../ducks/resReducer";
+import { addPending } from "../ducks/resReducer";
 import { Link } from "react-router-dom";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
@@ -42,7 +42,8 @@ class MakeRes extends Component {
                 );
               })}
             </select>
-            {/* need to add drop down calender! */}
+
+            {/* drop down calender! */}
             <label>Select Start Date</label>
             <DayPickerInput
               onDayChange={day => {

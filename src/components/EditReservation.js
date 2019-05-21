@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { getRes, deleteRes } from "../../ducks/adminReducer";
+import { getRes, deleteRes } from "../ducks/adminReducer";
 
 class EditReservation extends Component {
   constructor(props) {

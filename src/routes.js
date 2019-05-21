@@ -1,12 +1,12 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Home from "./components/home/home";
-import Login from "./components/login/login";
-import Register from "./components/register/register";
-import Services from "./components/services/services";
-import Contact from "./components/contact/contact";
-import Portal from "./components/portal/portal";
-import AdminPortal from "./components/admin/AdminPortal";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Services from "./components/Services";
+import Contact from "./components/Contact";
+import Portal from "./components/Portal";
+import AdminPortal from "./components/AdminPortal";
 
 export default (
   <Switch>
